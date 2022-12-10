@@ -1,29 +1,27 @@
 <div class="dialog">
   <header class="dialog__header">
-    {{> "avatar/avatar" class="dialog__avatar"}}
+    {{> "components/avatar/avatar" class="dialog__avatar"}}
     <h2 class="dialog__username">{{ name }}</h2>
-    {{> "button/button" class="dialog-header" type="button" label="Открыть меню"}}
+    {{> "components/button/button" class="dialog-header" type="button" label="Открыть меню"}}
     {{#> "menu/menu" classOpenMenu=classMenuHeader type="control" }}
-    {{> "menu/menuItem/menuItem" class="add-user" caption="Добавить пользователя"}}
-    {{> "menu/menuItem/menuItem" class="delete-user" caption="Удалить пользователя"}}
-    {{> "menu/menuItem/menuItem" class="clear-chat" caption="Очистить чат"}}
+      {{> "menu/components/menuItem/menuItem" class="add-user" caption="Добавить пользователя"}}
+      {{> "menu/components/menuItem/menuItem" class="delete-user" caption="Удалить пользователя"}}
+      {{> "menu/components/menuItem/menuItem" class="clear-chat" caption="Очистить чат"}}
     {{/ "menu/menu"}}
   </header>
   <div class="dialog__feed">
-    {{> "groupMessage/groupMessage" dateDialog="17 июня"}}
-    {{> "groupMessage/groupMessage" dateDialog="18 июня"}}
-    {{> "groupMessage/groupMessage" dateDialog="19 июня"}}
+    {{> "dialog/components/groupMessage/groupMessage" dateDialog="17 июня"}}
+    {{> "dialog/components/groupMessage/groupMessage" dateDialog="18 июня"}}
+    {{> "dialog/components/groupMessage/groupMessage" dateDialog="19 июня"}}
   </div>
   <form class="dialog__form" name="message" id="message">
-    {{> "button/button" class="dialog-insert" type="button" label="Вставить файл"}}
-    {{!-- < button class="dialog__insert" type="button" aria-label="Вставить файл">
-  </button> --}}
-  <input type="text" class="dialog__input" name="message" id="message" required="true" placeholder="Сообщение" />
-  {{> "button/button" class="dialog-submit" type="submit" label="Отправить сообщение"}}
-  {{#> "menu/menu" classOpenMenu=classMenuInsert type="insert" }}
-  {{> "menu/menuItem/menuItem" class="add-media" caption="Фото или Видео"}}
-  {{> "menu/menuItem/menuItem" class="add-file" caption="Файл"}}
-  {{> "menu/menuItem/menuItem" class="add-location" caption="Локация"}}
-  {{/ "menu/menu"}}
+    {{> "components/button/button" class="dialog-insert" type="button" label="Вставить файл"}}
+    <input type="text" class="dialog__input" name="message" id="message" required="true" placeholder="Сообщение" />
+    {{> "components/button/button" class="dialog-submit" type="submit" label="Отправить сообщение"}}
+    {{#> "menu/menu" classOpenMenu=classMenuInsert type="insert" }}
+      {{> "menu/components/menuItem/menuItem" class="add-media" caption="Фото или Видео"}}
+      {{> "menu/components/menuItem/menuItem" class="add-file" caption="Файл"}}
+      {{> "menu/components/menuItem/menuItem" class="add-location" caption="Локация"}}
+    {{/ "menu/menu"}}
 </form>
 </div >

@@ -13,10 +13,10 @@ errorSubmit: ""
 {{!< pageWithBox/pageWithBox}}
 
 <div class="profile__button-goback">
-  {{> "button/button" class="goback" type="button" label="Назад" }}
+  {{> "components/button/button" class="goback" type="button" label="Назад" }}
 </div>
 <div class="profile__box">
-  {{> "avatar/avatar" class="profile__avatar"}}
+  {{!-- {{> "avatar/avatar" class="profile__avatar"}} --}}
   {{#if staticData}}
     <h3 class="profile__name">{{title}}</h3>
   {{/if}}
@@ -64,7 +64,7 @@ errorSubmit: ""
       <a href="../../pages/login/login.hbs" class="profile__button profile__button_exit">Выйти</a>
     </div>
   {{else}}
-    {{> "button/button" class="profile" type="submit" caption="Сохранить"}}
+    {{> "components/button/button" class="profile" type="submit" caption="Сохранить"}}
   {{/if}}
 </div>
 {{#> "modal/modal" class=classModal title=titleStart errorRequest=errorRequest buttonName="Поменять" form="avatar"}}

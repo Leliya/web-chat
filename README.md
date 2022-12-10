@@ -13,4 +13,4 @@
 ## Ссылки
 
 [`Макет`](https://disk.yandex.ru/d/ApEgul2p-6u6Tg)  
-[`Деплой`]()
+[`Деплой`](https://shimmering-dodol-dd7a3d.netlify.app/)

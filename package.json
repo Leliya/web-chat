@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/pages/index.hbs --no-cache",
     "start": "parcel src/pages/index.hbs && node server.js",
-    "build": "parcel build src/pages/index.hbs"
+    "build": "parcel build src/layout/index.hbs"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,8 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "parcel": "^2.8.0",
+    "postcss": "^8.4.19",
+    "postcss-import": "^15.1.0",
     "postcss-nested": "^6.0.0"
   },
   "engines": {
