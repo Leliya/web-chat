@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel src/pages/index.hbs --no-cache",
-    "start": "parcel src/pages/index.hbs && node server.js",
-    "build": "parcel build src/pages/index.hbs"
+    "start": "parcel build src/pages/index.hbs --no-cache && node server.js ",
+    "build": "parcel build src/pages/index.hbs --no-cache"
   },
   "repository": {
     "type": "git",
