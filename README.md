@@ -1,16 +1,4 @@
-### Ветка, в которой делаете задания спринта, должна называться sprint_i, где i - номер спринта. Не переименовывайте её.
-
-### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. 
-### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).
-
-### Например, задания для проектной работы во втором спринте вы делаете в ветке sprint_2. Открываете из неё pull request в ветку main. Ссылку на этот pr добавляете в README.md в ветке main. После этого на платформе Практикума нажимаете «Проверить задание».
-
-### Также не забудьте проверить, что репозиторий публичный.
----
-
-## Бейджи
-
-[![Tests](https://github.com/Leliya/express-mesto-gha/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/Leliya/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
+[![Tests](https://github.com/Leliya/middle.messenger.praktikum.yandex/actions/workflows/tests.yml/badge.svg)](https://github.com/Leliya/middle.messenger.praktikum.yandex/actions/workflows/tests.yml)
 
 ## Описание
 
@@ -23,5 +11,5 @@
 
 ## Ссылки
 
-[`Макет`](https://disk.yandex.ru/d/ApEgul2p-6u6Tg)
+[`Макет`](https://disk.yandex.ru/d/ApEgul2p-6u6Tg)  
 [`Деплой`]()
