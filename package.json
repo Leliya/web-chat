@@ -1,0 +1,32 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main.  ### ВАЖНО: pull request должен называться “Sprint i” (i — номер спринта).",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/pages/index.hbs --no-cache",
+    "start": "parcel src/pages/index.hbs && node server.js",
+    "build": "parcel build src/layout/index.hbs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leliya/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Mariya Volochek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leliya/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/Leliya/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "^1.0.9",
+    "parcel": "^2.8.0",
+    "postcss-nested": "^6.0.0"
+  },
+  "engines": {
+    "node": ">= 12.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

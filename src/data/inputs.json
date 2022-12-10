@@ -1,0 +1,137 @@
+{
+  "profileUserInfo": [
+    {
+      "label": "Почта",
+      "inputName": "email",
+      "type": "email",
+      "value": "pochta@yandex.ru"
+    },
+    {
+      "label": "Логин",
+      "inputName": "login",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30",
+      "value": "ivanivanov"
+    },
+    {
+      "label": "Имя",
+      "inputName": "first_name",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30",
+      "value": "Иван"
+    },
+    {
+      "label": "Фамилия",
+      "inputName": "second_name",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30",
+      "value": "Иванов"
+    },
+    {
+      "label": "Имя в чате",
+      "inputName": "display_name",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30",
+      "value": "Иван"
+    },
+    {
+      "label": "Телефон",
+      "inputName": "phone",
+      "type": "tel",
+      "value": "+7(909)9673030"
+    }
+  ],
+  "profilePassword": [
+    {
+      "label": "Старый пароль",
+      "inputName": "oldPassword",
+      "type": "password",
+      "minSymbol": "6",
+      "maxSymbol": "30",
+      "value": "123456789"
+    },
+    {
+      "label": "Новый пароль",
+      "inputName": "newPassword",
+      "type": "password",
+      "minSymbol": "6",
+      "maxSymbol": "30",
+      "value": "12345678901"
+    },
+    {
+      "label": "Повторите новый пароль",
+      "inputName": "newPassword",
+      "type": "password",
+      "minSymbol": "6",
+      "maxSymbol": "30",
+      "value": "12345678901"
+    }
+  ],
+  "register": [
+    {
+      "inputName": "email",
+      "label": "Почта",
+      "type": "email"
+    },
+    {
+      "inputName": "login",
+      "label": "Логин",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30"
+    },
+    {
+      "inputName": "first_name",
+      "label": "Имя",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30"
+    },
+    {
+      "inputName": "second_name",
+      "label": "Фамилия",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30"
+    },
+    {
+      "inputName": "phone",
+      "label": "Телефон",
+      "type": "tel"
+    },
+    {
+      "inputName": "password",
+      "label": "Пароль",
+      "type": "password",
+      "minSymbol": "6",
+      "maxSymbol": "30"
+    },
+    {
+      "inputName": "password",
+      "label": "Пароль (ещё раз)",
+      "type": "password",
+      "minSymbol": "6",
+      "maxSymbol": "30"
+    }
+  ],
+  "login": [
+    {
+      "inputName": "login",
+      "label": "Логин",
+      "type": "text",
+      "minSymbol": "2",
+      "maxSymbol": "30"
+    },
+    {
+      "inputName": "password",
+      "label": "Пароль",
+      "type": "password",
+      "minSymbol": "6",
+      "maxSymbol": "30"
+    }
+  ]
+}

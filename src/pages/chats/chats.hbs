@@ -1,0 +1,27 @@
+---
+errorRequest: false
+titleAdd: "Добавить пользователя"
+titleDelete: "Удалить пользователя"
+classModal: ""
+uploadFile: ""
+errorSubmit: ""
+classMenuHeader: "menu_opened"
+classMenuInsert: "menu_opened"
+---
+
+{{!< container/container}}
+
+<main class="chats">
+  {{>"chatBar/chatBar"}}
+  {{>"dialog/dialog" name="Вадим"}}
+  {{#> "modal/modal" class=classModal title=titleAdd buttonName="Добавить" form="user"}}
+    <form class="modal__form modal__form_user" id="user" name="user">
+      {{> "input/input"
+        inputName="login"
+        label="Логин"
+        type="text"
+        minSymbol="2"
+        maxSymbol="30"}}
+    </form>
+  {{/ "modal/modal" }}
+</main>

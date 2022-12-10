@@ -1,0 +1,43 @@
+.menu-item {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  &__button {
+    padding: 0;
+    border: none;
+    background: none;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.2;
+    color: #1e1e1e;
+    gap: 15px;
+  }
+  &__icon{
+    padding: 0;
+    width: 22px;
+    height: 22px;
+    &_add-user{
+      background-image: url('../../static/menu-add-user.svg');
+    }
+    &_delete-user{
+      background-image: url('../../static/menu-delete-user.svg');
+    }
+    &_clear-chat{
+      background-image: url('../../static/menu-clear-chat.svg');
+    }
+    &_add-media{
+      background-image: url('../../static/menu-add-media.svg');
+    }
+    &_add-file{
+      background-image: url('../../static/menu-add-file.svg');
+    }
+    &_add-location{
+      background-image: url('../../static/menu-add-location.svg');
+    }
+  }
+}
