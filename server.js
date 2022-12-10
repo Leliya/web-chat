@@ -5,7 +5,7 @@ const path = require('path');
 
 const filepath = path.join(__dirname, 'dist');
 
-const PORT = 1234;
+const PORT = 3000;
 
 app.use(express.static(filepath));
 
