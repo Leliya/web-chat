@@ -4,15 +4,14 @@
   box-sizing: border-box;
   margin: 10px 0;
   padding: 11px;
-  background-color: #f8f8f8;
+  background-color: var(--color-message);
   display: flex;
   &_owner_another {
-    background-color: #f8f8f8;
     border-radius: 0 10px 10px 10px;
     align-self: flex-start;
   }
   &_owner_my {
-    background-color: #e4edfd;
+    background-color: var(--color-bg-element);
     border-radius: 10px 10px 0 10px;
     align-self: end;
     margin: 20px 0;
@@ -22,7 +21,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 1.25;
-    color: #1e1e1e;
+    color: var(--color-text);
   }
   &__info {
     display: flex;
@@ -47,10 +46,10 @@
     font-size: 9px;
     line-height: 1;
     &_owner_my {
-      color: #3369f3;
+      color: var(--color-blue);
     }
     &_owner_another {
-      color: #999999;
+      color: var(--color-text-second);
     }
   }
 }

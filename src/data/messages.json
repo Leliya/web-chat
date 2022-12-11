@@ -1,35 +1,37 @@
-{ "messages": [
-  {
-    "text":"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
-    "time":"12:20",
-    "owner":"my",
-    "delivered":true
-  },
-  {
-    "text":"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
-    "time":"12:20",
-    "owner":"another"
-  },
-  {
-    "text":"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
-    "time":"12:20",
-    "owner":"my",
-    "delivered":true
-  },
-  {
-    "text":"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
-    "time":"12:20",
-    "owner":"another"
-  },
-  {
-    "text":"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
-    "time":"12:20",
-    "owner":"my",
-    "delivered":true
-  },
-  {
-    "text":"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
-    "time":"12:20",
-    "owner":"another"
-  }
-]}
+{
+  "messages": [
+    {
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
+      "time": "12:20",
+      "owner": "my",
+      "delivered": true
+    },
+    {
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
+      "time": "12:20",
+      "owner": "another"
+    },
+    {
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
+      "time": "12:20",
+      "owner": "my",
+      "delivered": true
+    },
+    {
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
+      "time": "12:20",
+      "owner": "another"
+    },
+    {
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
+      "time": "12:20",
+      "owner": "my",
+      "delivered": true
+    },
+    {
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa ratione, soluta eaque provident rerum incidunt quis alias, dicta aliquam delectus cupiditate. Hic maxime veniam, ducimus numquam placeat rerum exercitationem nemo!",
+      "time": "12:20",
+      "owner": "another"
+    }
+  ]
+}

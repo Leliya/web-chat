@@ -2,13 +2,12 @@
   height: 68px;
   width: 100%;
   box-sizing: border-box;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid var(--color-border);
   padding: 2px 0 0 0;
   list-style: none;
   margin-bottom: 2px;
-
   &:last-child {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid var(--color-border);
   }
   &__content {
     display: flex;
@@ -20,24 +19,24 @@
     position: relative;
     box-sizing: border-box;
     &_active {
-      background-color: #e4edfd;
+      background-color: var(--color-bg-element);
       &::before {
-        content: '';
+        content: "";
         width: 10px;
         height: 100%;
         top: 0;
         left: -10px;
         position: absolute;
-        background-color: #e4edfd;
+        background-color: var(--color-bg-element);
       }
       &::after {
-        content: '';
+        content: "";
         width: 10px;
         height: 100%;
         top: 0;
         right: -10px;
         position: absolute;
-        background-color: #e4edfd;
+        background-color: var(--color-bg-element);
       }
     }
   }
@@ -62,7 +61,7 @@
     font-weight: 500;
     font-size: 12px;
     line-height: 1.25;
-    color: #999999;
+    color: var(--color-text-second);
     display: -webkit-inline-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -84,17 +83,17 @@
     font-size: 9px;
     line-height: 1.44;
     text-align: right;
-    color: #999999;
+    color: var(--color-text-second);
   }
   &__count-new-message {
-    background-color: #3369f3;
+    background-color: var(--color-blue);
     display: flex;
     width: 20px;
     height: 20px;
     border-radius: 15px;
     align-items: center;
     justify-content: center;
-    color: #fff;
+    color: var(--color-white);
     font-weight: 500;
     font-size: 11px;
     line-height: 1.1;

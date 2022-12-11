@@ -10,7 +10,7 @@
   visibility: hidden;
   opacity: 0;
   &_opened{
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: var(--color-overlay);
     visibility: visible;
     opacity: 1;
   }
@@ -19,8 +19,8 @@
     box-sizing: border-box;
     width: 340px;
     padding: 40px 30px;
-    background-color: #fff;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
+    background-color: var(--color-white);
+    box-shadow: var(--shadow);
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -31,9 +31,9 @@
     font-size: 15px;
     line-height: 1.33;
     text-align: center;
-    color: #1e1e1e;
+    color: var(--color-text);
     &_error {
-      color: #ff2f2f;
+      color: var(--color-red-error);
     }
   }
   &__form{
@@ -52,7 +52,7 @@
     line-height: 1.33;
     text-align: center;
     text-decoration-line: underline;
-    color: #3369f3;
+    color: var(--color-blue);
     margin: auto;
   }
   &__input {
@@ -67,7 +67,7 @@
     font-size: 14px;
     line-height: 1.2;
     text-align: center;
-    color: #8d8d8d;
+    color: var(--color-text-file);
   }
   &__error-submit {
     margin-top: 14px;
@@ -75,6 +75,6 @@
     font-size: 11px;
     line-height: 1;
     text-align: center;
-    color: #ff2f2f;
+    color: var(--color-red-error);
   }
 }

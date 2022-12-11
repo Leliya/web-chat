@@ -3,4 +3,4 @@
   "transformers": {
     "*.hbs": ["@anikin/parcel-transformer-handlebars"]
   }
-} 
+}
