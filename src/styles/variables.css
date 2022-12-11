@@ -1,17 +1,21 @@
 body {
-  --color-text: #1e1e1e;
-  --color-text-second: #999999;
-  --color-text-file: #8d8d8d;
-  --color-border: #eaeaea;
   --color-white: #fff;
   --color-blue: #3369f3;
   --color-red: #ff0000;
-  --color-red-error: #ff2f2f;
-  --color-overlay: rgba(0, 0, 0, 0.6);
-  --color-overlay-avatar: rgba(0, 0, 0, 0.5);
-  --color-chatbar: #fbfbfb;
+
+  --color-text: #1e1e1e;
+  --color-text-second: #999999;
+  --color-text-file: #8d8d8d;
+
+  --color-border: #eaeaea;
+
   --color-bg-element: #e4edfd;
   --color-bg-second: #efefef;
+  --color-chatbar: #fbfbfb;
   --color-message: #f8f8f8;
+
+  --color-overlay: rgba(0, 0, 0, 0.6);
+  --color-overlay-avatar: rgba(0, 0, 0, 0.5);
+
   --shadow: 0px 0px 6px rgba(0, 0, 0, 0.14);
 }
