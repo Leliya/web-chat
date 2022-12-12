@@ -1,0 +1,80 @@
+---
+staticData: true
+changePassword: false
+title: "Иван"
+errorRequest: false
+titleStart: "Загрузите файл"
+titleReady: "Файл загружен"
+classModal: ""
+uploadFile: ""
+errorSubmit: ""
+---
+
+{{!< pageWithBox/pageWithBox}}
+
+<div class="profile__button-goback">
+  {{> "components/button/button" class="goback" type="button" label="Назад" }}
+</div>
+<div class="profile__box">
+  {{> "components/avatar/avatar" class="profile__avatar"}}
+  {{#if staticData}}
+    <h3 class="profile__name">{{title}}</h3>
+  {{/if}}
+  <form class="profile__form">
+    {{#if changePassword}}
+      {{#each inputs.profilePassword}}
+        <label class="profile__label">
+          {{label}}
+          <input
+            class="profile__input {{inputName}}-input-error"
+            type={{type}}
+            name={{inputName}}
+            id={{inputName}}
+            placeholder={{label}}
+            required="true"
+            value={{value}}
+            minlength={{minSymbol}}
+            maxLength={{maxSymbol}}
+          />
+        </label>
+      {{/each}}
+    {{else}}
+      {{#each inputs.profileUserInfo}}
+        <label class="profile__label">
+          {{label}}
+          <input
+            class="profile__input {{inputName}}-input-error"
+            type={{type}}
+            name={{inputName}}
+            id={{inputName}}
+            placeholder={{label}}
+            required="true"
+            value={{value}}
+            minlength={{minSymbol}}
+            maxLength={{maxSymbol}}
+          />
+        </label>
+      {{/each}}
+    {{/if}}
+  </form>
+  {{#if staticData}}
+    <div class="profile__control">
+      <button class="profile__button" type="button">Изменить данные</button>
+      <button class="profile__button" type="button">Изменить пароль</button>
+      <a href="../../pages/login/login.hbs" class="profile__button profile__button_exit">Выйти</a>
+    </div>
+  {{else}}
+    {{> "components/button/button" class="profile" type="submit" caption="Сохранить"}}
+  {{/if}}
+</div>
+{{#> "modal/modal" class=classModal title=titleStart errorRequest=errorRequest buttonName="Поменять" form="avatar"}}
+  <form class="modal__form" id="avatar" name="avatar">
+    {{#if uploadFile}}
+      <span class="modal__filename">{{uploadFile}}</span>
+    {{else}}
+      <label class="modal__label">Выбрать файл на компьютере
+        <input type="file" class="modal__input" accept=".jpg, .jpeg, .png" id="avatar" name="avatar">
+      </label>
+    {{/if}}
+  </form>
+{{/ "modal/modal" }}

@@ -1,0 +1,22 @@
+<div class="chatBar">
+  <div class="chatBar__profile-link">
+    <a href="../../pages/profile/profile.hbs" class="chatBar__link">Профиль
+      &#10095;
+    </a>
+  </div>
+  <form class="chatBar__search" name="search" id="search">
+    <input
+      type="text"
+      class="chatBar__search-input"
+      name="search"
+      id="search"
+      placeholder="Поиск"
+      required="true"
+    />
+  </form>
+  <ul class="chatBar__chatList">
+    {{#each users}}
+      {{> "chatBar/components/chat/chat"}}
+    {{/each}}
+  </ul>
+</div>

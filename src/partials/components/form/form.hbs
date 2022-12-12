@@ -1,0 +1,12 @@
+<div class="form-container">
+  <form class="form" id={{formName}} name={{formName}}>
+    <h2 class="form__title">{{title}}</h2>
+    <fieldset class="form__fieldset" form={{formName}}>
+      {{> @partial-block }}
+    </fieldset>
+    <div class="form__control">
+      {{> "components/button/button" caption=buttonName class="form" type="submit"}}
+      <a href="../../pages/{{link}}/{{link}}.hbs" class="form__link">{{linkName}}</a>
+    </div>
+  </form>
+</div>

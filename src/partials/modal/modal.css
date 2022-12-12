@@ -1,0 +1,80 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  &_opened{
+    background-color: var(--color-overlay);
+    visibility: visible;
+    opacity: 1;
+  }
+  &__box {
+    min-height: 257px;
+    box-sizing: border-box;
+    width: 340px;
+    padding: 40px 30px;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__title {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.33;
+    text-align: center;
+    color: var(--color-text);
+    &_error {
+      color: var(--color-red-error);
+    }
+  }
+  &__form{
+    margin: 40px 0 45px;
+    width: 100%;
+    &_user{
+      margin: 50px 0 15px;
+    }
+  }
+  &__label {
+    cursor: pointer;
+    width: 122px;
+    display: block;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1.33;
+    text-align: center;
+    text-decoration-line: underline;
+    color: var(--color-blue);
+    margin: auto;
+  }
+  &__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+  &__filename {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    color: var(--color-text-file);
+  }
+  &__error-submit {
+    margin-top: 14px;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 1;
+    text-align: center;
+    color: var(--color-red-error);
+  }
+}

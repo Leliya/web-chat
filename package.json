@@ -1,0 +1,34 @@
+{
+  "name": "messenger",
+  "version": "1.0.0",
+  "description": "Учебный проект в рамках курса ЯндексюПрактикум Мидл фронтенд",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/pages/index.hbs --no-cache --open",
+    "start": "parcel build src/pages/index.hbs --no-cache && node server.js",
+    "build": "parcel build src/pages/index.hbs --no-cache"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Leliya/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Mariya Volochek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Leliya/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/Leliya/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
+    "parcel": "2.8.0",
+    "postcss": "8.4.19",
+    "postcss-import": "15.1.0",
+    "postcss-nested": "6.0.0"
+  },
+  "engines": {
+    "node": ">= 12.0.0"
+  },
+  "dependencies": {
+    "express": "4.18.2"
+  }
+}

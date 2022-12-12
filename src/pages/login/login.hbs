@@ -1,0 +1,7 @@
+{{!< pageWithBox/pageWithBox}}
+
+{{#> "components/form/form" formName="login" title="Вход" buttonName="Войти" link="register" linkName="Создать аккаунт"}}
+  {{#each inputs.login}}
+    {{> "components/input/input" }}
+  {{/each}}
+{{/ "components/form/form" }}

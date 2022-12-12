@@ -1,0 +1,17 @@
+<li class="chat">
+  {{#if active}}
+    <div class="chat__content chat__content_active">
+  {{else}}
+    <div class="chat__content">
+  {{/if}}
+    {{> "components/avatar/avatar" class="chat__avatar"}}
+    <h3 class="chat__title">{{name}}</h3>
+    <p class="chat__text">{{text}}</p>
+    <div class="chat__info">
+      <span class="chat__date">{{dateMessage}}</span>
+      {{#if count}}
+        <span class="chat__count-new-message">{{count}}</span>
+      {{/if}}
+    </div>
+  </div>
+</li>
