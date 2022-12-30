@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+
   &__box {
     height: 160px;
     display: flex;
@@ -11,6 +12,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   &__code {
     margin: 0;
     font-weight: 500;
@@ -19,6 +21,7 @@
     text-align: center;
     color: var(--color-text);
   }
+
   &__status {
     margin: 0;
     font-weight: 500;
@@ -28,6 +31,7 @@
     color: var(--color-text);
     margin-bottom: 50px;
   }
+
   &__back {
     border: none;
     background: none;

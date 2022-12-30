@@ -9,11 +9,13 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
+
   &_opened {
     background-color: var(--color-overlay);
     visibility: visible;
     opacity: 1;
   }
+
   &__box {
     min-height: 257px;
     box-sizing: border-box;
@@ -26,23 +28,28 @@
     flex-direction: column;
     align-items: center;
   }
+
   &__title {
     margin: 0;
     font-size: 15px;
     line-height: 1.33;
     text-align: center;
     color: var(--color-text);
+
     &_error {
       color: var(--color-red-error);
     }
   }
+
   &__form {
     margin: 40px 0 45px;
     width: 100%;
+
     &_user {
       margin: 50px 0 15px;
     }
   }
+
   &__label {
     cursor: pointer;
     width: 122px;
@@ -55,6 +62,7 @@
     color: var(--color-blue);
     margin: auto;
   }
+
   &__input {
     position: absolute;
     width: 1px;
@@ -62,6 +70,7 @@
     overflow: hidden;
     clip: rect(0 0 0 0);
   }
+
   &__filename {
     font-weight: 500;
     font-size: 14px;
@@ -69,6 +78,7 @@
     text-align: center;
     color: var(--color-text-file);
   }
+
   &__error-submit {
     margin-top: 14px;
     font-weight: 500;

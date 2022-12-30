@@ -1,5 +1,6 @@
 .group-message {
   width: 100%;
+
   &__date {
     margin: 20px 0;
     font-weight: 500;
@@ -10,6 +11,7 @@
     position: sticky;
     top: 20px;
   }
+
   &__messages {
     margin: 0;
     padding: 0;

@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__header {
     position: relative;
     width: 100%;
@@ -14,12 +15,14 @@
     justify-content: space-between;
     align-items: center;
   }
+
   &__avatar {
     width: 34px;
     height: 34px;
     border-radius: 20px;
     margin-right: 10px;
   }
+
   &__username {
     margin-right: auto;
     font-weight: 600;
@@ -27,19 +30,21 @@
     line-height: 1;
     color: var(--color-text);
   }
+
   &__feed {
-    height: calc(100% - 110px);
     margin: 0;
     height: 100%;
     overflow-y: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
     overflow: auto;
+
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
     }
   }
+
   &__form {
     position: relative;
     height: 55px;
@@ -50,6 +55,7 @@
     align-items: center;
     justify-content: space-between;
   }
+
   &__input {
     height: 32px;
     border: none;
@@ -63,6 +69,7 @@
     font-size: 12px;
     line-height: 1;
     color: var(--color-text);
+
     &::placeholder {
       color: var(--color-text-second);
     }

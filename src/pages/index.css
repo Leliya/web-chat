@@ -3,7 +3,7 @@
   height: 100vh;
   background-color: var(--color-white);
   overflow: hidden;
-  font-family: "Inter";
+  font-family: Inter, Arial, Verdana, Tahoma, sans-serif;
   font-style: normal;
 }
 
@@ -15,4 +15,3 @@
   align-items: center;
   position: relative;
 }
-

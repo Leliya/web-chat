@@ -7,6 +7,7 @@
   color: var(--color-text);
   padding-bottom: 7px;
   border-bottom: 1px solid var(--color-blue);
+
   &::placeholder {
     color: var(--color-text-second);
   }

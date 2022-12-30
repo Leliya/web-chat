@@ -1,6 +1,5 @@
 .menu {
   z-index: 10;
-  padding: 0;
   margin: 0;
   position: absolute;
   box-sizing: border-box;
@@ -13,14 +12,17 @@
   gap: 16px;
   visibility: hidden;
   opacity: 0;
+
   &_opened {
     visibility: visible;
     opacity: 1;
   }
+
   &_control {
     top: 60px;
     right: -10px;
   }
+
   &_insert {
     top: -138px;
     left: -10px;

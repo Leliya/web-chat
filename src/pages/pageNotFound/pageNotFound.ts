@@ -1,12 +1,11 @@
-import ErrorPage  from '../../partials/errorPage';
+import ErrorPage from '../../partials/errorPage';
 import { Block, renderDOM, registerComponent } from '../../utils/';
 
 // import './form.css';
 registerComponent(ErrorPage);
 
-
 export class PageNotFound extends Block<object> {
-  static componentName = 'PageNotFound'
+  static componentName = 'PageNotFound';
 
   protected render(): string {
     return `

@@ -5,6 +5,7 @@
   background-color: var(--color-chatbar);
   border-right: 1px solid var(--color-border);
   box-sizing: border-box;
+
   &__profile-link {
     height: 56px;
     display: flex;
@@ -12,9 +13,9 @@
     align-items: center;
     padding-right: 10px;
   }
+
   &__link {
     text-decoration: none;
-    font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -22,13 +23,15 @@
     text-align: right;
     color: var(--color-text-second);
   }
+
   &__search {
     width: 100%;
-    margin: 0 0 14px 0;
+    margin: 0 0 14px;
     padding: 0 10px;
     height: 32px;
     box-sizing: border-box;
   }
+
   &__search-input {
     padding: 0;
     width: 100%;
@@ -36,19 +39,20 @@
     border: none;
     background-color: var(--color-bg-second);
     border-radius: 5px;
-    font-family: 'Inter';
     font-weight: 500;
     font-size: 12px;
     line-height: 1;
     color: var(--color-text);
+
     &::placeholder {
       color: var(--color-text-second);
       text-align: center;
-      background-image: url('../../static/chatbar-search.svg');
+      background-image: url("../../static/chatbar-search.svg");
       background-repeat: no-repeat;
       background-position: 38% -2px;
     }
   }
+
   &__chatList {
     margin: 0;
     padding: 0 10px;
@@ -57,6 +61,7 @@
     height: calc(100% - 100px);
     box-sizing: content-box;
     overflow: auto;
+
     &::-webkit-scrollbar {
       width: 0;
       height: 0;
