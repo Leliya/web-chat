@@ -13,6 +13,7 @@ body {
   --color-bg-second: #efefef;
   --color-chatbar: #fbfbfb;
   --color-message: #f8f8f8;
+  --color-red-error: #ff2f2f;
 
   --color-overlay: rgba(0, 0, 0, 0.6);
   --color-overlay-avatar: rgba(0, 0, 0, 0.5);

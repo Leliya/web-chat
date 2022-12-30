@@ -18,7 +18,6 @@
     line-height: 1;
     text-align: center;
     color: var(--color-text);
-    text-align: center;
     margin: 0;
   }
   &__fieldset {

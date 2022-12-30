@@ -1,0 +1,46 @@
+[
+  {
+    "label": "Почта",
+    "inputName": "email",
+    "type": "email",
+    "value": "pochta@yandex.ru"
+  },
+  {
+    "label": "Логин",
+    "inputName": "login",
+    "type": "text",
+    "minSymbol": "2",
+    "maxSymbol": "30",
+    "value": "ivanivanov"
+  },
+  {
+    "label": "Имя",
+    "inputName": "first_name",
+    "type": "text",
+    "minSymbol": "2",
+    "maxSymbol": "30",
+    "value": "Иван"
+  },
+  {
+    "label": "Фамилия",
+    "inputName": "second_name",
+    "type": "text",
+    "minSymbol": "2",
+    "maxSymbol": "30",
+    "value": "Иванов"
+  },
+  {
+    "label": "Имя в чате",
+    "inputName": "display_name",
+    "type": "text",
+    "minSymbol": "2",
+    "maxSymbol": "30",
+    "value": "Иван"
+  },
+  {
+    "label": "Телефон",
+    "inputName": "phone",
+    "type": "tel",
+    "value": "+7(909)9673030"
+  }
+]

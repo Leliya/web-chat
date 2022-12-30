@@ -2,8 +2,8 @@
   height: 100%;
   padding: 0;
   flex: 1 1 310px;
-  background-color: var(--color-chatbar);;
-  border-right: 1px solid var(--color-border);;
+  background-color: var(--color-chatbar);
+  border-right: 1px solid var(--color-border);
   box-sizing: border-box;
   &__profile-link {
     height: 56px;
@@ -14,7 +14,7 @@
   }
   &__link {
     text-decoration: none;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 500;
     font-size: 12px;

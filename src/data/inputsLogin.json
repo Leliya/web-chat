@@ -1,0 +1,16 @@
+[
+  {
+    "inputName": "login",
+    "label": "Логин",
+    "type": "text",
+    "minSymbol": "2",
+    "maxSymbol": "30"
+  },
+  {
+    "inputName": "password",
+    "label": "Пароль",
+    "type": "password",
+    "minSymbol": "6",
+    "maxSymbol": "30"
+  }
+]

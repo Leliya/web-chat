@@ -9,7 +9,7 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  &_opened{
+  &_opened {
     background-color: var(--color-overlay);
     visibility: visible;
     opacity: 1;
@@ -36,10 +36,10 @@
       color: var(--color-red-error);
     }
   }
-  &__form{
+  &__form {
     margin: 40px 0 45px;
     width: 100%;
-    &_user{
+    &_user {
       margin: 50px 0 15px;
     }
   }
