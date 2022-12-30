@@ -1,4 +1,4 @@
-import ErrorPage from '../../partials/ErrorPage';
+import ErrorPage from '../../partials/errorPage';
 import { Block, renderDOM, registerComponent } from '../../utils/';
 
 registerComponent(ErrorPage);

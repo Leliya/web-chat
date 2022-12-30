@@ -1,8 +1,6 @@
 @import url('./normalize.css');
 @import url('./variables.css');
 @import url('../pages/index.css');
-/* @import url('../layouts/container/container.css');
-@import url('../layouts/pageWithBox/pageWithBox.css'); */
 @import url('../pages/chats/chats.css');
 @import url('../pages/profile/profile.css');
 @import url('../pages/profile/components/fieldProfile/fieldProfile.css');
