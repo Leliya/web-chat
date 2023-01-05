@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import { validateInput } from '../../utils/validateForm';
+import { validateInput, errorInterpretator } from '../../utils/validateInput';
 
 interface DialogProps {
   onClick: (event: Event) => void;
@@ -9,7 +9,7 @@ interface DialogProps {
 }
 
 export class Dialog extends Block<DialogProps> {
-  static componentName = 'Dialog'
+  static componentName = 'Dialog';
 
   constructor(props: DialogProps) {
     super({
@@ -18,7 +18,12 @@ export class Dialog extends Block<DialogProps> {
         e.preventDefault();
         const input = this.refs.message.element as HTMLInputElement;
         console.log(input.value);
-        console.log(validateInput(input.value, 'message'));
+        console.log(
+          errorInterpretator(
+            validateInput(input.value, 'message').errors,
+            'message'
+          ).message
+        );
       },
     });
   }

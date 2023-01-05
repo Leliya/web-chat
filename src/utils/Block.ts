@@ -1,7 +1,6 @@
 import EventBus from './EventBus';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
-
 
 type Events = Values<typeof Block.EVENTS>;
 
@@ -13,25 +12,25 @@ export default class Block<P extends object> {
     FLOW_RENDER: 'flow:render',
   } as const;
 
-  static getComponentName:string = this.constructor.name
+  static getComponentName: string = this.constructor.name;
 
-  public id:string = nanoid(6);
+  public id: string = nanoid(6);
 
   protected _element: Nullable<HTMLElement> = null;
   protected readonly props: P;
-  protected children: {[id: string]: Block<P>} = {};
+  protected children: { [id: string]: Block<P> } = {};
 
   eventBus: () => EventBus<Events>;
 
   protected state: Record<string, any> = {};
-  refs: {[key: string]: Block<P>} = {};
+  refs: { [key: string]: Block<P> } = {};
 
   public constructor(props: P) {
     const eventBus = new EventBus<Events>();
 
-    this.getStateFromProps(props)
+    this.getStateFromProps(props);
 
-    this.props = this._makePropsProxy(props || {} as P);
+    this.props = this._makePropsProxy(props || ({} as P));
     this.state = this._makePropsProxy(this.state);
 
     this.eventBus = () => eventBus;
@@ -67,8 +66,7 @@ export default class Block<P extends object> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  componentDidMount(props: P) {
-  }
+  componentDidMount(props: P) {}
 
   _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -78,8 +76,8 @@ export default class Block<P extends object> {
     this._render();
   }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: P, newProps: P):boolean {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  componentDidUpdate(oldProps: P, newProps: P): boolean {
     return true;
   }
 
@@ -104,13 +102,12 @@ export default class Block<P extends object> {
   }
 
   _render() {
-   // console.log(this.constructor.name)
     const templateString = this.render();
-    const fragment = this.compile(templateString, {...this.props});
+    const fragment = this.compile(templateString, { ...this.props });
 
     this._removeEvents();
     const newElement = fragment.firstElementChild!;
-//console.log(this.props)
+
     this._element!.replaceWith(newElement);
 
     this._element = newElement as HTMLElement;
@@ -122,19 +119,20 @@ export default class Block<P extends object> {
   }
 
   getContent(): HTMLElement {
-    // Хак, чтобы вызвать CDM только после добавления в DOM
     if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
       setTimeout(() => {
-        if (this.element?.parentNode?.nodeType !==  Node.DOCUMENT_FRAGMENT_NODE ) {
+        if (
+          this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE
+        ) {
           this.eventBus().emit(Block.EVENTS.FLOW_CDM);
         }
-      }, 100)
+      }, 100);
     }
 
     return this.element!;
   }
 
-  _makePropsProxy(props: any){
+  _makePropsProxy(props: any) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
@@ -146,7 +144,7 @@ export default class Block<P extends object> {
       set(target: Record<string, unknown>, prop: string, value: unknown) {
         target[prop] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target);
+        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
       deleteProperty() {
@@ -166,7 +164,6 @@ export default class Block<P extends object> {
       return;
     }
 
-
     Object.entries(events).forEach(([event, listener]) => {
       this._element!.removeEventListener(event, listener);
     });
@@ -185,23 +182,19 @@ export default class Block<P extends object> {
   }
 
   compile(templateString: string, context: any): DocumentFragment {
-    const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
-
-    // const fragment = document.createElement('template');
-    // console.log (fragment)
+    const fragment = this._createDocumentElement(
+      'template'
+    ) as HTMLTemplateElement;
 
     const template = Handlebars.compile(templateString);
-    const htmlString = template({...context, children: this.children, refs: this.refs})
-    //console.log (templateString)
-    fragment.innerHTML = htmlString;
+    const htmlString = template({
+      ...context,
+      children: this.children,
+      refs: this.refs,
+    });
 
-    /**
-     * Заменяем заглушки на компоненты
-     */
+    fragment.innerHTML = htmlString;
     Object.entries(this.children).forEach(([id, component]) => {
-      /**
-       * Ищем заглушку по id
-       */
       const stub = fragment.content.querySelector(`[data-id="${id}"]`);
 
       if (!stub) {
@@ -209,30 +202,17 @@ export default class Block<P extends object> {
       }
 
       const stubChilds = stub.childNodes.length ? stub.childNodes : [];
-
-      /**
-       * Заменяем заглушку на component._element
-       */
       const content = component.getContent();
-      //console.log (content)
-      stub.replaceWith(content);
 
-      /**
-       * Ищем элемент layout-а, куда вставлять детей
-       */
+      stub.replaceWith(content);
       const layoutContent = content.querySelector('[data-layout="1"]');
 
       if (layoutContent && stubChilds.length) {
         layoutContent.append(...stubChilds);
       }
     });
-
-    /**
-     * Возвращаем фрагмент
-     */
     return fragment.content;
   }
-
 
   show() {
     this.getContent().style.display = 'block';

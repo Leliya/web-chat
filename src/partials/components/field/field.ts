@@ -1,38 +1,51 @@
 import Block from '../../../utils/Block';
-import { validateInput } from '../../../utils/validateForm';
+import {
+  errorInterpretator,
+  validateInput,
+  validateInputType,
+} from '../../../utils/validateInput';
 
-interface FieldProps{
-  errorMessage:string;
-  value:string;
-  onInput:(e: InputEvent) => void;
-  onFocus:(e: Event) => void;
-  onBlur:(e: FocusEvent) => void;
+interface FieldProps {
+  type: string;
+  inputName: string;
+  label: string;
+  minlength?: number;
+  maxlength?: number;
+  errorMessage: string;
+  classHidden?: string;
+  value: string;
+  onInput: (e: InputEvent) => void;
+  onFocus: (e: Event) => void;
+  onBlur: (e: FocusEvent) => void;
 }
 
 export class Field extends Block<FieldProps> {
-  static componentName = 'Field'
-  constructor(props:FieldProps) {
+  static componentName = 'Field';
+  constructor(props: FieldProps) {
     super({
       ...props,
       errorMessage: '',
-      value: '',
-      onInput: (e:InputEvent) => {
-        const element =  e.target as HTMLInputElement
-        this.setProps({value: element.value})
+      onInput: (e: InputEvent) => {
+        const element = e.target as HTMLInputElement;
+        this.setProps({ value: element.value });
       },
       onFocus: () => {
         this.refs.errorInput.setProps({
-        errorMessage: '',
-      })},
-      onBlur: (e:FocusEvent) => {
-        const element =  e.target as HTMLInputElement
-        const message: string = validateInput(
+          errorMessage: '',
+        });
+      },
+      onBlur: (e: FocusEvent) => {
+        const element = e.target as HTMLInputElement;
+        const resultValidate: validateInputType = validateInput(
           element.value,
           element.name
         );
-        if (message) {
+        if (!resultValidate.isValid) {
           this.refs.errorInput.setProps({
-            errorMessage: message,
+            errorMessage: errorInterpretator(
+              resultValidate.errors,
+              element.name
+            ).message,
           });
         } else {
           this.refs.errorInput.setProps({
@@ -41,22 +54,21 @@ export class Field extends Block<FieldProps> {
         }
       },
     });
-    //this.refs.errorInput.setProps({errorMessage:""})
   }
 
   protected render(): string {
     return `
     <div class="input">
-      <label for={{input.inputName}} class="input__label {{classHidden}}">
-        {{input.label}}
+      <label for={{inputName}} class="input__label {{classHidden}}">
+        {{label}}
       </label>
       {{{Input
         class="input__input"
-        type=input.type
-        inputName=input.inputName
-        label=input.label
-        minlength=input.minSymbol
-        maxLength=input.maxSymbol
+        type=type
+        inputName=inputName
+        label=label
+        minlength=minSymbol
+        maxLength=maxSymbol
         onBlur=onBlur
         onFocus=onFocus
         value=value

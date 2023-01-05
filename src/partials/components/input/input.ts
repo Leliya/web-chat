@@ -34,7 +34,7 @@ export class Input extends Block<InputProps> {
       type={{type}}
       name={{inputName}}
       id={{inputName}}
-      placeholder={{label}}
+      placeholder="{{label}}"
       required="true"
       ref={{inputName}}
       {{#if value}}
@@ -46,26 +46,3 @@ export class Input extends Block<InputProps> {
     `;
   }
 }
-
-// <div class="input">
-// <label for={{input.inputName}} class="input__label">
-//   {{input.label}}
-// </label>
-// <input
-//   class="input__input"
-//   type={{input.type}}
-//   name={{input.inputName}}
-//   id={{input.inputName}}
-//   placeholder={{input.label}}
-//   required="true"
-//   minlength={{input.minSymbol}}
-//   maxLength={{input.maxSymbol}}
-//   ref={{input.inputName}}
-//   onBlur=${this.props.onBlur}
-// />
-// {{#if input.errorMessage}}
-// <span class="input__error">
-//   {{errorMessage}}
-// </span>
-// {{/if}}
-// </div>

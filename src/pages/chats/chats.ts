@@ -19,17 +19,38 @@ registerComponent(GroupMessage);
 registerComponent(Message);
 registerComponent(Input);
 
-interface ChatsProps{
-  data:object[];
-  messages:object[];
+type ChatType = {
+  name: string;
+  text: string;
+  dateMessage: string;
+  count?: number;
+  active?: boolean;
+};
+
+type MessageType = {
+  text: string;
+  time: string;
+  owner: string;
+  isDelivered?: boolean;
+};
+
+interface ChatsProps {
+  // message:{
+  //   text:string,
+  //   time:string,
+  //   owner:string,
+  //   isDelivered?:boolean
+  // }
+  data: ChatType[];
+  messages: MessageType[];
 }
 
 export class Chats extends Block<ChatsProps> {
-  static componentName = 'Chats'
+  static componentName = 'Chats';
   constructor() {
     super({
-      data: dataChats,
-      messages: dataMessages
+      data:dataChats,
+      messages: dataMessages,
     });
   }
 
@@ -46,14 +67,3 @@ export class Chats extends Block<ChatsProps> {
 document.addEventListener('DOMContentLoaded', () => {
   renderDOM(new Chats());
 });
-
-// {{#> "modal/modal" class=classModal title=titleAdd buttonName="Добавить" form="user"}}
-//       <form class="modal__form modal__form_user" id="user" name="user">
-//         {{> "components/input/input"
-//           inputName="login"
-//           label="Логин"
-//           type="text"
-//           minSymbol="2"
-//           maxSymbol="30"}}
-//       </form>
-//     {{/ "modal/modal" }}

@@ -1,20 +1,28 @@
-[
+type inputRules = {
+  inputName: string,
+  regexp: string,
+  message: string,
+  minSymbol?: number,
+  maxSymbol?: number
+}
+
+export const rulesValidation:inputRules[] = [
   {
-    "inputName": "email",
+    inputName: "email",
     "regexp": "^([\\w\\-_\\.~\\*\\'()!]+)@([\\w\\-\\.]{2,255})\\.([A-Za-z]{2,6})$",
     "message": "Email некорректен, проверьте введенные данные."
   },
   {
     "inputName": "login",
     "regexp": "^[A-Za-z0-9]*[A-Za-z]+[A-Za-z0-9]*$",
-    "message": "Логин может состоять только из латиницы, цифр, \"-\" и \"_\"",
+    "message": "Поле может состоять только из латиницы, цифр, \"-\" и \"_\"",
     "minSymbol": 3,
     "maxSymbol": 20
   },
   {
     "inputName": "display_name",
     "regexp": "^[A-Za-z0-9]*[A-Za-z]+[A-Za-z0-9]*$",
-    "message": "Логин может состоять только из латиницы, цифр, \"-\" и \"_\"",
+    "message": "Поле может состоять только из латиницы, цифр, \"-\" и \"_\"",
     "minSymbol": 3,
     "maxSymbol": 20
   },

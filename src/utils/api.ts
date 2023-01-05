@@ -1,54 +1,47 @@
 enum METHODS {
-  GET='GET',
-  POST='POST',
-  PUT='PUT',
-  DELETE='DELETE',
-};
-
-function queryStringify(data: Record<string, any>): string {
-  const arr: string[] = Object.keys(data);
-  let str = '';
-  arr.forEach((item) => {
-    str = str.concat('&', `${item}=${data[item].toString()}`);
-    return str;
-  });
-  const str2 = '?' + str.slice(1);
-  return str2;
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
 }
+
+const queryStringify = (data: Record<string, any>): string =>
+  '?' +
+  Object.entries(data)
+    .map(([key, value]) => `${key}=${value.toString()}`)
+    .join('&');
+
 type Options = {
-  method?: string;
+  method: METHODS;
   data?: Record<string, any>;
   headers?: Record<string, string>;
   timeout?: number;
 };
-type Method = (url: string, options?: Options) => Promise<XMLHttpRequest>;
+type RequestFn = (url: string, options?: Options) => Promise<XMLHttpRequest>;
 
 export class HTTPTransport {
-  get: Method = (url: string, options = {}) => {
+  get: RequestFn = (url, options) => {
     let query;
-    if (options.data) {
+    if (options?.data) {
       query = `${url}${queryStringify(options.data)}`;
     } else {
       query = url;
     }
     return this.request(query, { ...options, method: METHODS.GET });
   };
-  post = (url: string, options = {}) => {
+  post: RequestFn = (url, options) => {
     console.log(url);
     return this.request(url, { ...options, method: METHODS.POST });
   };
-  put = (url: string, options = {}) => {
+  put: RequestFn = (url, options) => {
     return this.request(url, { ...options, method: METHODS.PUT });
   };
-  delete = (url: string, options = {}) => {
+  delete: RequestFn = (url, options) => {
     return this.request(url, { ...options, method: METHODS.DELETE });
   };
 
   request = (url: string, options: Options): Promise<XMLHttpRequest> => {
-    console.log(url);
-    //console.log(options)
     const { method, data, headers, timeout } = options;
-    console.log(options);
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       if (!method) {
@@ -57,7 +50,6 @@ export class HTTPTransport {
         xhr.open(method, url);
       }
       if (headers) {
-        console.log(headers);
         Object.entries(headers).map(([key, value]) =>
           xhr.setRequestHeader(key, value)
         );

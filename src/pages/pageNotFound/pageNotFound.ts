@@ -1,7 +1,6 @@
 import ErrorPage from '../../partials/errorPage';
 import { Block, renderDOM, registerComponent } from '../../utils/';
 
-// import './form.css';
 registerComponent(ErrorPage);
 
 export class PageNotFound extends Block<object> {

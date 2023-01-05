@@ -7,7 +7,7 @@ interface MenuItemProps {
 }
 
 export class MenuItem extends Block<MenuItemProps> {
-  static componentName = 'MenuItem'
+  static componentName = 'MenuItem';
 
   protected render(): string {
     return `

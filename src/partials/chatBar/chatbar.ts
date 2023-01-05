@@ -1,7 +1,12 @@
 import Block from '../../utils/Block';
 
 interface ChatbarProps{
-  chats:object[];
+  chats:{
+    name: string,
+    text: string,
+    dateMessage: string,
+    count: number
+  }
 }
 
 export class Chatbar extends Block<ChatbarProps> {
