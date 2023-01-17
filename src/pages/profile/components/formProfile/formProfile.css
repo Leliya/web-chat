@@ -1,0 +1,93 @@
+.profile__box {
+  position: relative;
+  min-height: 527px;
+  padding: 10px 0;
+  width: 510px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.profile__avatar {
+  cursor: pointer;
+  width: 130px;
+  height: 130px;
+  background-image: url("../../static/profile-avatar-plug.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 70px;
+
+  &::before {
+    content: "Поменять\0aаватар";
+    width: 100%;
+    height: 100%;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 1;
+    border-radius: 70px;
+    white-space: pre;
+  }
+
+  &:hover::before {
+    background-color: var(--color-overlay-avatar);
+    visibility: visible;
+  }
+}
+
+.profile__name {
+  position: absolute;
+  top: 160px;
+  left: auto;
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.profile__form {
+  width: 100%;
+  margin: 90px 0 auto;
+}
+
+.profile__control {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  margin: 50px 0 60px;
+}
+
+.profile__button {
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  padding: 0;
+  margin: 0;
+  height: 32px;
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 13px;
+  border-bottom: 1px solid var(--color-border);
+  line-height: 1;
+  color: var(--color-blue);
+
+  &_exit {
+    display: block;
+    text-decoration: none;
+    color: var(--color-red);
+    border-bottom: none;
+    line-height: 32px;
+  }
+}

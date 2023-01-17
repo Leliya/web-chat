@@ -1,9 +1,11 @@
-const express = require("express");
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable no-undef */
+const express = require('express');
 
 const app = express();
-const path = require("path");
+const path = require('path');
 
-const filepath = path.join(__dirname, "dist");
+const filepath = path.join(__dirname, 'dist');
 
 const PORT = process.env.PORT || 3000;
 

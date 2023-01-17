@@ -6,30 +6,34 @@
   padding: 50px 30px 30px;
   box-sizing: border-box;
 }
+
 .form {
   width: 100%;
   min-height: 370px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   &__title {
     font-weight: 500;
     font-size: 20px;
     line-height: 1;
     text-align: center;
     color: var(--color-text);
-    text-align: center;
     margin: 0;
   }
+
   &__fieldset {
     width: 100%;
     padding: 0;
     border: none;
     margin: 40px 0 auto;
   }
+
   &__control {
     width: 100%;
   }
+
   &__link {
     width: fit-content;
     text-align: center;
