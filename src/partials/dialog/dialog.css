@@ -5,6 +5,18 @@
   flex-direction: column;
   justify-content: space-between;
 
+  &_empty {
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__empty-message{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--color-text);
+  }
+
   &__header {
     position: relative;
     width: 100%;

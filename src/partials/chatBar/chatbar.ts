@@ -1,25 +1,53 @@
+import ChatsController from '../../controllers/ChatsController';
 import Block from '../../utils/Block';
+import { createChatsSocket } from '../../utils/createChatsSocket';
+import { withChats } from '../../utils/HOC/withChats';
+import { RouterInterface } from '../../utils/Router/RouterInterface';
 
-interface ChatbarProps{
-  chats:{
-    name: string,
-    text: string,
-    dateMessage: string,
-    count: number
-  }
+interface ChatbarProps {
+  router: RouterInterface;
+  onGoProfile: () => void;
+  onOpenModalCreateChats: () => void;
+  createChat: (data: Record<string, string>) => void;
+  chats: ChatType[];
 }
 
-export class Chatbar extends Block<ChatbarProps> {
-  static componentName = 'Chatbar'
+class Chatbar extends Block<ChatbarProps> {
+  static componentName = 'Chatbar';
+  constructor(props: ChatbarProps) {
+    super({
+      ...props,
+      onGoProfile: () => this.props.router.go('/settings'),
+      onOpenModalCreateChats: () => {
+        this.refs.modalСreateChats.toggleDisplayElement();
+      },
+
+      createChat: (data) => {
+        ChatsController.createChat(data)
+          .then(() =>
+            ChatsController.getChats()
+              .then((dataChats) => {
+                window.store.set({ chats: dataChats }, '');
+                window.store.set({ sockets: createChatsSocket(dataChats) }, '');
+                this.refs.modalСreateChats.toggleDisplayElement(); //<== Не работает закрытие окна, исправить
+              })
+              .catch((err) => console.log(err))
+          )
+          .catch((err) => console.log(err));
+      },
+    });
+  }
+
   protected render(): string {
     return `
       <div class="chatBar">
         <div class="chatBar__profile-link">
-          <a href="../profile/profile.html" class="chatBar__link">Профиль
-            &#10095;
-          </a>
+          {{{Button class="createChat" type="button" caption="Создать чат"
+           onClick=onOpenModalCreateChats}}}
+          {{{Button class="chatBarLink" type="button" caption="Профиль
+          ❯" onClick=onGoProfile}}}
         </div>
-        <form class="chatBar__search" name="search" id="search">
+        <form class="chatBar__search" name="search" id="search" >
           <input
             type="text"
             class="chatBar__search-input"
@@ -31,10 +59,22 @@ export class Chatbar extends Block<ChatbarProps> {
         </form>
         <ul class="chatBar__chatList">
           {{#each chats}}
-            {{{Chat chat=this}}}
+              {{{Chat chat=this onClick=@root.onChooseChat}}}
           {{/each}}
         </ul>
+        {{{ModalChats
+          formName="createChats"
+          title="Создать чат"
+          buttonName="Создать"
+          ref="modalСreateChats"
+          fieldName="Название"
+          inputName="title"
+          onClick=onOpenModalCreateChats
+          handleSubmit=createChat
+        }}}
       </div>
   `;
   }
 }
+
+export default withChats(Chatbar);

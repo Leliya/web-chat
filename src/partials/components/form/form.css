@@ -1,14 +1,22 @@
-.form-container {
+/* .form-container {
   width: 340px;
   background: var(--color-white);
   box-shadow: var(--shadow);
   border-radius: 12px;
   padding: 50px 30px 30px;
   box-sizing: border-box;
-}
+} */
 
 .form {
-  width: 100%;
+  width: 340px;
+  background: var(--color-white);
+  box-shadow: var(--shadow);
+  border-radius: 12px;
+  padding: 50px 30px 30px;
+  box-sizing: border-box;
+  position: relative;
+
+  /* width: 100%; */
   min-height: 370px;
   display: flex;
   flex-direction: column;
@@ -34,7 +42,7 @@
     width: 100%;
   }
 
-  &__link {
+  /* &__link {
     width: fit-content;
     text-align: center;
     color: var(--color-blue);
@@ -44,5 +52,5 @@
     line-height: 1;
     text-decoration: none;
     display: block;
-  }
+  } */
 }

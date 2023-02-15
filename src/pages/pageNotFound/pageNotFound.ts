@@ -1,7 +1,9 @@
+import { Button } from '../../partials/components/button/button';
 import ErrorPage from '../../partials/errorPage';
-import { Block, renderDOM, registerComponent } from '../../utils/';
+import { Block, registerComponent } from '../../utils/';
 
 registerComponent(ErrorPage);
+registerComponent(Button);
 
 export class PageNotFound extends Block<object> {
   static componentName = 'PageNotFound';
@@ -12,7 +14,3 @@ export class PageNotFound extends Block<object> {
   `;
   }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderDOM(new PageNotFound({}));
-});

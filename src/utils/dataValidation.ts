@@ -8,7 +8,7 @@ type inputRules = {
 
 export const rulesValidation:inputRules[] = [
   {
-    inputName: "email",
+    "inputName": "email",
     "regexp": "^([\\w\\-_\\.~\\*\\'()!]+)@([\\w\\-\\.]{2,255})\\.([A-Za-z]{2,6})$",
     "message": "Email некорректен, проверьте введенные данные."
   },
@@ -22,6 +22,13 @@ export const rulesValidation:inputRules[] = [
   {
     "inputName": "display_name",
     "regexp": "^[A-Za-z0-9]*[A-Za-z]+[A-Za-z0-9]*$",
+    "message": "Поле может состоять только из латиницы, цифр, \"-\" и \"_\"",
+    "minSymbol": 3,
+    "maxSymbol": 20
+  },
+  {
+    "inputName": "title",
+    "regexp": "^[A-ZА-Яa-zа-я0-9_-]+$",
     "message": "Поле может состоять только из латиницы, цифр, \"-\" и \"_\"",
     "minSymbol": 3,
     "maxSymbol": 20
@@ -45,6 +52,27 @@ export const rulesValidation:inputRules[] = [
   },
   {
     "inputName": "password",
+    "regexp": "^.*(?=.*[A-Z]).*(?=.*\\d).*$",
+    "message": "Пароль должен содержать хотя бы одну заглавную букву и цифру",
+    "minSymbol": 8,
+    "maxSymbol": 40
+  },
+  {
+    "inputName": "oldPassword",
+    "regexp": "^.*(?=.*[A-Z]).*(?=.*\\d).*$",
+    "message": "Пароль должен содержать хотя бы одну заглавную букву и цифру",
+    "minSymbol": 8,
+    "maxSymbol": 40
+  },
+  {
+    "inputName": "newPassword",
+    "regexp": "^.*(?=.*[A-Z]).*(?=.*\\d).*$",
+    "message": "Пароль должен содержать хотя бы одну заглавную букву и цифру",
+    "minSymbol": 8,
+    "maxSymbol": 40
+  },
+  {
+    "inputName": "newPassword_repeat",
     "regexp": "^.*(?=.*[A-Z]).*(?=.*\\d).*$",
     "message": "Пароль должен содержать хотя бы одну заглавную букву и цифру",
     "minSymbol": 8,

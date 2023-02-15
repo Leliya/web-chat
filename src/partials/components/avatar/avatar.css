@@ -1,3 +1,5 @@
 .avatar {
   background-color: var(--color-bg-second);
+  background-position: center;
+  background-repeat: no-repeat;
 }

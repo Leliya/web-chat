@@ -1,14 +1,23 @@
 import EventBus from './EventBus';
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
+import isEqual from './utility/isEqual';
+import merge from './utility/merge';
+import cloneDeep from './utility/cloneDeep';
 
 type Events = Values<typeof Block.EVENTS>;
+
+export interface BlockClass<P extends object> extends Function {
+  new (props: P): Block<P>;
+  componentName: string;
+}
 
 export default class Block<P extends object> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
+    FLOW_CWU: 'flow:component-will-unmount',
     FLOW_RENDER: 'flow:render',
   } as const;
 
@@ -17,11 +26,14 @@ export default class Block<P extends object> {
   public id: string = nanoid(6);
 
   protected _element: Nullable<HTMLElement> = null;
-  protected readonly props: P;
+  protected props: Readonly<P>;
   protected children: { [id: string]: Block<P> } = {};
 
   eventBus: () => EventBus<Events>;
 
+  /**
+   * @deprecated
+   */
   protected state: Record<string, any> = {};
   refs: { [key: string]: Block<P> } = {};
 
@@ -30,9 +42,9 @@ export default class Block<P extends object> {
 
     this.getStateFromProps(props);
 
-    this.props = this._makePropsProxy(props || ({} as P));
-    this.state = this._makePropsProxy(this.state);
+    this.props = props;
 
+    this.state = {};
     this.eventBus = () => eventBus;
 
     this._registerEvents(eventBus);
@@ -40,10 +52,22 @@ export default class Block<P extends object> {
     eventBus.emit(Block.EVENTS.INIT, this.props);
   }
 
+  _checkInDom() {
+    const elementInDOM = document.contains(this._element);
+
+    if (elementInDOM) {
+      setTimeout(() => this._checkInDom(), 1000);
+      return;
+    }
+
+    this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+  }
+
   _registerEvents(eventBus: EventBus<Events>) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -62,11 +86,20 @@ export default class Block<P extends object> {
   }
 
   _componentDidMount(props: P) {
+    this._checkInDom();
     this.componentDidMount(props);
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   componentDidMount(props: P) {}
+
+  _componentWillUnmount() {
+    this.eventBus().destroy();
+    this.componentWillUnmount();
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  componentWillUnmount() {}
 
   _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
@@ -77,24 +110,25 @@ export default class Block<P extends object> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: P, newProps: P): boolean {
+  componentDidUpdate(oldProps?: P, newProps?: P): boolean {
     return true;
   }
 
-  setProps = (nextProps: any) => {
-    if (!nextProps) {
+  setProps = (nextPartialProps: Partial<P>) => {
+    if (!nextPartialProps) {
       return;
     }
 
-    Object.assign(this.props, nextProps);
+    const prevProps = cloneDeep(this.props);
+    const nextProps = merge(this.props, nextPartialProps) as P;
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
   setState = (nextState: any) => {
-    if (!nextState) {
+    if (!nextState || isEqual(this.state, nextState)) {
       return;
     }
-
-    Object.assign(this.state, nextState);
+    return merge(this.state, nextState);
   };
 
   get element() {
@@ -132,26 +166,8 @@ export default class Block<P extends object> {
     return this.element!;
   }
 
-  _makePropsProxy(props: any) {
-    // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const self = this;
-
-    return new Proxy(props as unknown as object, {
-      get(target: Record<string, unknown>, prop: string) {
-        const value = target[prop];
-        return typeof value === 'function' ? value.bind(target) : value;
-      },
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
-        target[prop] = value;
-
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
-        return true;
-      },
-      deleteProperty() {
-        throw new Error('Нет доступа');
-      },
-    }) as unknown as P;
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  _makePropsProxy(props: any) {}
 
   _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
@@ -214,8 +230,12 @@ export default class Block<P extends object> {
     return fragment.content;
   }
 
-  show() {
-    this.getContent().style.display = 'block';
+  toggleDisplayElement() {
+    return;
+  }
+
+  show(display: string) {
+    this.getContent().style.display = display;
   }
 
   hide() {

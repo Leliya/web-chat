@@ -1,1 +1,1 @@
-export {FormLogin as default} from './formLogin'
+export {default} from './formLogin'

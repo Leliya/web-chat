@@ -17,6 +17,7 @@
     line-height: 1.2;
     color: var(--color-text);
     gap: 15px;
+    cursor: pointer;
   }
 
   &__icon {

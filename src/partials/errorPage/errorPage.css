@@ -31,14 +31,4 @@
     color: var(--color-text);
     margin-bottom: 50px;
   }
-
-  &__back {
-    border: none;
-    background: none;
-    font-weight: 500;
-    font-size: 11px;
-    line-height: 1;
-    text-align: center;
-    color: var(--color-blue);
-  }
 }

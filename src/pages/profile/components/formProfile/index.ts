@@ -1,1 +1,1 @@
-export {FormProfile as default} from './formProfile'
+export {default} from './formProfile'

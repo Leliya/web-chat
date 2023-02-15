@@ -11,7 +11,7 @@ interface FieldProps {
   label: string;
   minlength?: number;
   maxlength?: number;
-  errorMessage: string;
+  errorMessage: string|null;
   classHidden?: string;
   value: string;
   onInput: (e: InputEvent) => void;
@@ -25,8 +25,8 @@ export class Field extends Block<FieldProps> {
     super({
       ...props,
       errorMessage: '',
-      onInput: (e: InputEvent) => {
-        const element = e.target as HTMLInputElement;
+      onInput: (e?: InputEvent) => {
+        const element = e?.target as HTMLInputElement;
         this.setProps({ value: element.value });
       },
       onFocus: () => {
@@ -34,8 +34,8 @@ export class Field extends Block<FieldProps> {
           errorMessage: '',
         });
       },
-      onBlur: (e: FocusEvent) => {
-        const element = e.target as HTMLInputElement;
+      onBlur: (e?: FocusEvent) => {
+        const element = e?.target as HTMLInputElement;
         const resultValidate: validateInputType = validateInput(
           element.value,
           element.name

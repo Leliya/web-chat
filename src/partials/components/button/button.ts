@@ -21,15 +21,15 @@ export class Button extends Block<ButtonProps> {
     return `
     <button
       class="button button_{{class}}"
-      type={{ type }}
+      type={{type}}
       {{#if label}}
-        aria-label={{ label }}
+        aria-label={{label}}
       {{/if}}
       {{#if form}}
-        form={{ form }}
+        form={{form}}
       {{/if}}>
       {{#if caption}}
-        {{ caption }}
+        {{caption}}
       {{/if}}
     </button>;`;
   }

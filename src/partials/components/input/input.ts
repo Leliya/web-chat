@@ -2,11 +2,11 @@ import Block from '../../../utils/Block';
 import './input.css';
 
 interface InputProps {
-  events: { [key: string]: (event: Event) => void };
+  events: { [key: string]: (event: FocusEvent) => void };
   blur: string;
   focus: string;
-  onBlur: (event: Event) => void;
-  onFocus: (event: Event) => void;
+  onBlur: (event: FocusEvent) => void;
+  onFocus: (event: FocusEvent) => void;
   class: string;
   type: string;
   inputName: string;
@@ -30,6 +30,7 @@ export class Input extends Block<InputProps> {
   protected render(): string {
     return `
     <input
+      autocomplete="off"
       class={{class}}
       type={{type}}
       name={{inputName}}
@@ -41,6 +42,9 @@ export class Input extends Block<InputProps> {
         value={{value}}
       {{else}}
         value=""
+      {{/if}}
+      {{#if disabled}}
+      disabled
       {{/if}}
     />
     `;

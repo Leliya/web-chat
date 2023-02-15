@@ -1,38 +1,94 @@
-import { Form } from '../../../../partials/components/form/form';
+import AuthController from '../../../../controllers/AuthController';
+import UserController from '../../../../controllers/UserController';
+import { Form, FormProps } from '../../../../partials/components/form/form';
+import { logout } from '../../../../utils/auth';
+import { withRouter } from '../../../../utils/HOC/withRouter';
+import { withUser } from '../../../../utils/HOC/withUser';
 
-export class FormProfile extends Form {
+class FormProfile extends Form {
   static componentName = 'FormProfile';
+  static isChangePassword = false;
+  static isStaticDataProfile = true;
+
+  constructor(props: FormProps) {
+    super(props);
+    this.setProps({
+      isChangePassword: false,
+      isStaticDataProfile: true,
+      handleClickLogout: () => {
+        AuthController.logout()
+          .then(() => {
+            logout(this.props.router);
+          })
+          .catch((err) => console.log(err));
+      },
+      handleClickChangeProgile: () =>
+        this.setProps({
+          isChangePassword: false,
+          isStaticDataProfile: false,
+        }),
+      handleClickChangePassword: () =>
+        this.setProps({
+          isChangePassword: true,
+          isStaticDataProfile: false,
+        }),
+    });
+  }
+
+  submitForm(data: User) {
+    super.submitForm(data);
+    if (this.props.isChangePassword) {
+      UserController.changePassword(data)
+        .then(() =>
+          this.setProps({
+            isChangePassword: false,
+            isStaticDataProfile: true,
+          })
+        )
+        .catch((err) => console.log(err));
+    } else {
+      UserController.changeProfile(data)
+        .then((res) => window.store.set(res, 'user'))
+        .then(() =>
+          this.setProps({
+            isChangePassword: false,
+            isStaticDataProfile: true,
+          })
+        )
+        .catch((err) => console.log(err));
+    }
+  }
+
   protected render(): string {
     return `
-    <div class="profile__box">
-      {{{Avatar class="profile__avatar"}}}
-        {{#if isStaticData}}
-          <h3 class="profile__name">Иван</h3>
-        {{/if}}
-      <form class="profile__form" id="profile" name="profile">
+      <form class="profile__form" id="profile" name="profile" >
+      {{#if isStaticDataProfile}}
+            <h3 class="profile__name">{{user.first_name}}</h3>
+          {{/if}}
         {{#if isChangePassword}}
           {{{FieldProfile label="Старый пароль" type="password"  inputName="oldPassword" minSymbol=6 maxSymbol=30 ref="oldPassword"}}}
           {{{FieldProfile label="Новый пароль" type="password"  inputName="newPassword" minSymbol=6 maxSymbol=30 ref="newPassword"}}}
           {{{FieldProfile label="Повторите новый пароль" type="password"  inputName="newPassword_repeat" minSymbol=6 maxSymbol=30 ref="newPassword_repeat"}}}
         {{else}}
-          {{{FieldProfile label="Почта" type="email"  inputName="email" ref="email"  value="pochta@yandex.ru"}}}
-          {{{FieldProfile label="Логин" type="text"  inputName="login" minSymbol=2 maxSymbol=30 ref="login" value="ivanivanov"}}}
-          {{{FieldProfile label="Имя" type="text"  inputName="first_name" minSymbol=2 maxSymbol=30 ref="first_name" value="Иван"}}}
-          {{{FieldProfile label="Фамилия" type="text"  inputName="second_name" minSymbol=2 maxSymbol=30 ref="second_name" value="Иванов"}}}
-          {{{FieldProfile label="Имя в чате" type="text"  inputName="display_name" minSymbol=2 maxSymbol=30 ref="display_name" value="Иван"}}}
-          {{{FieldProfile label="Телефон" type="tel"  inputName="phone" ref="phone" value="+7(909)9673030"}}}
+          {{{FieldProfile label="Почта" type="email"  inputName="email" ref="email"  value=user.email disabled=isStaticDataProfile}}}
+          {{{FieldProfile label="Логин" type="text"  inputName="login" minSymbol=2 maxSymbol=30 ref="login" value=user.login disabled=isStaticDataProfile}}}
+          {{{FieldProfile label="Имя" type="text"  inputName="first_name" minSymbol=2 maxSymbol=30 ref="first_name" value=user.first_name disabled=isStaticDataProfile}}}
+          {{{FieldProfile label="Фамилия" type="text"  inputName="second_name" minSymbol=2 maxSymbol=30 ref="second_name" value=user.second_name disabled=isStaticDataProfile}}}
+          {{{FieldProfile label="Имя в чате" type="text"  inputName="display_name" minSymbol=2 maxSymbol=30 ref="display_name" value=user.display_name disabled=isStaticDataProfile}}}
+          {{{FieldProfile label="Телефон" type="tel"  inputName="phone" ref="phone" value=user.phone disabled=isStaticDataProfile}}}
         {{/if}}
-      </form>
-      {{#if isStaticData}}
+      {{#if isStaticDataProfile}}
         <div class="profile__control">
-          <button class="profile__button" type="button">Изменить данные</button>
-          <button class="profile__button" type="button">Изменить пароль</button>
-          <a href="../../login/login.html" class="profile__button profile__button_exit">Выйти</a>
+          {{{Button class="changeProfile" type="button" caption="Изменить данные" form="profile" onClick=handleClickChangeProgile}}}
+          {{{Button class="changeProfile" type="button" caption="Изменить пароль" form="profile" onClick=handleClickChangePassword}}}
+          {{{Button class="changeProfile" type="button" caption="Выйти" form="profile" onClick=handleClickLogout}}}
         </div>
       {{else}}
-        {{{Button class="profile" type="submit" caption="Сохранить" form="profile" onClick=onClick}}}
+        {{{Button class="profile" type="submit" caption="Сохранить" form="profile" }}}
       {{/if}}
-    </div>
+</form>
   `;
   }
 }
+
+export default withRouter(withUser(FormProfile));

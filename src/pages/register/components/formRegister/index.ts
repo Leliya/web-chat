@@ -1,1 +1,1 @@
-export {FormRegister as default} from './formRegister'
+export { default } from './formRegister';
