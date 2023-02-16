@@ -20,10 +20,6 @@ export class Modal extends Block<ModalProps> {
   static componentName = 'Modal';
   static classOpenModal: '';
 
-  constructor(props: ModalProps) {
-    super(props);
-  }
-
   toggleDisplayElement() {
     if (!this.props.classOpenModal) {
       this.setProps({ classOpenModal: 'modal_opened' });

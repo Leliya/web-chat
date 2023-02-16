@@ -64,6 +64,7 @@
     margin: auto;
     visibility: visible;
     opacity: 1;
+
     &_hidden {
       visibility: hidden;
       opacity: 0;

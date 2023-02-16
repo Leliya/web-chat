@@ -32,7 +32,7 @@ export class Register extends Block<FormRegisterProps> {
   }
 
   componentDidUpdate(): boolean {
-    return this.props.store.getState().screen !== 'register';
+    return this.props.store.getState().screen === 'register';
   }
 
   render() {

@@ -59,7 +59,7 @@ class Chats extends Block<ChatsProps> {
   static componentName = 'Chats';
 
   componentDidUpdate(): boolean {
-    return this.props.store.getState().screen !== 'chats';
+    return this.props.store.getState().screen === 'chats';
   }
 
   render() {

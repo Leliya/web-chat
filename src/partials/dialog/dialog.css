@@ -10,7 +10,7 @@
     align-items: center;
   }
 
-  &__empty-message{
+  &__empty-message {
     font-weight: 500;
     font-size: 16px;
     line-height: 1;

@@ -17,7 +17,6 @@ class GroupMessage extends Block<GroupMessageProps> {
   }
 
   protected render(): string {
-    console.log(this.props);
     return `
     <section class="group-message">
       <h4 class="group-message__date">

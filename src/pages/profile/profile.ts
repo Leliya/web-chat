@@ -57,7 +57,7 @@ class Profile extends Block<ProfileProps> {
   }
 
   componentDidUpdate(): boolean {
-    return window.store.getState().screen !== 'profile';
+    return window.store.getState().screen === 'profile';
   }
 
   render() {

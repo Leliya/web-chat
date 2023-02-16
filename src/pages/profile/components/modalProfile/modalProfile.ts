@@ -25,11 +25,10 @@ export class ModalProfile extends Modal {
         const element = e.target as HTMLInputElement;
         const fileList: FileList | null = element.files;
         if (fileList) {
-          console.log(fileList[0].name);
           this.setProps({ file: fileList[0], inputValue: fileList[0].name });
         }
       },
-      changeAvatar: async (e: InputEvent) => {
+      changeAvatar: (e: InputEvent) => {
         e.preventDefault();
         if (!this.checkInput()) {
           return;
@@ -42,11 +41,14 @@ export class ModalProfile extends Modal {
         const formData = new FormData();
         formData.append('avatar', file, this.props.inputValue);
 
-        UserController.changeAvatar(formData).then((res) => {
-          window.store.set(res, 'user');
-        });
+        UserController.changeAvatar(formData)
+          .then((res) => {
+            window.store.set({ user: res }, '');
+          })
+          .catch((err) => console.log(err));
       },
     });
+    this.checkInput = this.checkInput.bind(this);
   }
 
   checkInput() {

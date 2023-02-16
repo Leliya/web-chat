@@ -12,8 +12,8 @@ class UserController {
     return userAPI.changePassword(dataProfile).then(checkResponse<Indexed>);
   }
 
-  public changeAvatar(dataAvatar: FormData): Promise<Indexed> {
-    return userAPI.changeAvatar(dataAvatar).then(checkResponse<Indexed>);
+  public changeAvatar(dataAvatar: FormData): Promise<User> {
+    return userAPI.changeAvatar(dataAvatar).then(checkResponse<User>);
   }
 
   public searchUserByLogin(data: { login: string }): Promise<User[]> {
