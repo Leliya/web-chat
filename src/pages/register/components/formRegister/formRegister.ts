@@ -1,11 +1,22 @@
-import { Form } from "../../../../partials/components/form/form";
+import AuthController from '../../../../controllers/AuthController';
+import { Form } from '../../../../partials/components/form/form';
+import { login } from '../../../../utils/auth';
+import { withRouter } from '../../../../utils/HOC/withRouter';
 
-export class FormRegister extends Form {
-  static componentName = 'FormRegister'
+class FormRegister extends Form {
+  static componentName = 'FormRegister';
+
+  submitForm(data: RegisterType) {
+    super.submitForm(data);
+    AuthController.register(data)
+      .then(() => {
+        login(this.props.router);
+      })
+      .catch((err) => console.log(err));
+  }
 
   protected render(): string {
     return `
-      <div class="form-container">
         <form class="form" id={{formName}} name={{formName}} novalidate>
           <h2 class="form__title">{{title}}</h2>
           <fieldset class="form__fieldset" form={{formName}}>
@@ -19,9 +30,11 @@ export class FormRegister extends Form {
           </fieldset>
           <div class="form__control">
             {{{Button class="form" type="submit" form=formName caption=buttonName onClick=onClick ref=buttonForm}}}
-            <a href="../{{link}}/{{link}}.html" class="form__link">{{linkName}}</a>
+            {{{Button class="link" type="button" caption=linkName onClick=onGoLogin}}}
           </div>
         </form>
-      </div>`;
+      `;
   }
 }
+
+export default withRouter(FormRegister);

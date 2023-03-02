@@ -2,44 +2,49 @@ import Block from './Block';
 import Handlebars, { HelperOptions } from 'handlebars';
 
 interface BlockConstructable<Props = object> {
-  new(props: Props): Block<object>;
-  componentName: string
+  new (props: Props): Block<object>;
+  componentName: string;
 }
 
-export default function registerComponent<Props extends object>(Component: BlockConstructable<Props>) {
-  Handlebars.registerHelper(Component.componentName || Component.name, function (this: Props, { hash: { ref, ...hash }, data, fn }: HelperOptions) {
-    if (!data.root.children) {
-      data.root.children = {};
-    }
-
-    if (!data.root.refs) {
-      data.root.refs = {};
-    }
-
-    const { children, refs } = data.root;
-
-    /**
-     * Костыль для того, чтобы передавать переменные
-     * внутрь блоков вручную подменяя значение
-     */
-    (Object.keys(hash) as any).forEach((key: keyof Props) => {
-      //console.log(this[key])
-      if (this[key] && typeof this[key] === 'string') {
-        hash[key] = hash[key].replace(new RegExp(`{{${String(key)}}}`, 'i'), this[key]);
+export default function registerComponent<Props extends object>(
+  Component: BlockConstructable<Props>
+) {
+  Handlebars.registerHelper(
+    Component.componentName || Component.name,
+    function (
+      this: Props,
+      { hash: { ref, ...hash }, data, fn }: HelperOptions
+    ) {
+      if (!data.root.children) {
+        data.root.children = {};
       }
-    });
 
-    const component = new Component(hash);
-    //console.log(hash)
+      if (!data.root.refs) {
+        data.root.refs = {};
+      }
 
-    children[component.id] = component;
+      const { children, refs } = data.root;
 
-    if (ref) {
-      refs[ref] = component;
+      (Object.keys(hash) as any).forEach((key: keyof Props) => {
+        if (this[key] && typeof this[key] === 'string') {
+          hash[key] = hash[key].replace(
+            new RegExp(`{{${String(key)}}}`, 'i'),
+            this[key]
+          );
+        }
+      });
+
+      const component = new Component(hash);
+
+      children[component.id] = component;
+
+      if (ref) {
+        refs[ref] = component;
+      }
+
+      const contents = fn ? fn(this) : '';
+
+      return `<div data-id="${component.id}">${contents}</div>`;
     }
-
-    const contents = fn ? fn(this): '';
-
-    return `<div data-id="${component.id}">${contents}</div>`;
-  })
+  );
 }

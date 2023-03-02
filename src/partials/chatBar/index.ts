@@ -1,1 +1,1 @@
-export {Chatbar as default} from './chatbar'
+export {default} from './chatbar'

@@ -55,11 +55,15 @@ export function validateInput(value: string, name: string): validateInputType {
         return { isValid: false, errors: 'incorrect_login_characters' };
       case 'first_name':
       case 'second_name':
+      case 'title':
         return { isValid: false, errors: 'incorrect_name_characters' };
       case 'phone':
         return { isValid: false, errors: 'incorrect_tel' };
       case 'password':
       case 'password_repeat':
+      case 'newPassword':
+      case 'newPassword_repeat':
+      case 'oldPassword':
         return { isValid: false, errors: 'incorrect_password' };
       case 'message':
         return { isValid: false, errors: 'empty' };

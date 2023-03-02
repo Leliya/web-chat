@@ -17,6 +17,7 @@ export class FieldProfile extends Field {
         onFocus=onFocus
         value=value
         ref="input"
+        disabled=disabled
       }}}
       {{{ErrorInput ref="errorInput" class="profile__error"}}}
     </label>

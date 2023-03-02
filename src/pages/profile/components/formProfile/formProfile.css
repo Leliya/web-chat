@@ -14,8 +14,8 @@
   cursor: pointer;
   width: 130px;
   height: 130px;
-  background-image: url("../../static/profile-avatar-plug.svg");
   background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
   border-radius: 70px;
 
@@ -44,10 +44,7 @@
 }
 
 .profile__name {
-  position: absolute;
-  top: 160px;
-  left: auto;
-  margin: 0;
+  margin: 0 0 50px;
   font-weight: 600;
   font-size: 16px;
   line-height: 1;
@@ -57,7 +54,7 @@
 
 .profile__form {
   width: 100%;
-  margin: 90px 0 auto;
+  margin: 50px 0 auto;
 }
 
 .profile__control {
@@ -66,28 +63,4 @@
   align-items: start;
   width: 100%;
   margin: 50px 0 60px;
-}
-
-.profile__button {
-  cursor: pointer;
-  width: 100%;
-  text-align: left;
-  padding: 0;
-  margin: 0;
-  height: 32px;
-  background: none;
-  border: none;
-  font-weight: 500;
-  font-size: 13px;
-  border-bottom: 1px solid var(--color-border);
-  line-height: 1;
-  color: var(--color-blue);
-
-  &_exit {
-    display: block;
-    text-decoration: none;
-    color: var(--color-red);
-    border-bottom: none;
-    line-height: 32px;
-  }
 }

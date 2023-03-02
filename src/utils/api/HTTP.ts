@@ -5,39 +5,52 @@ enum METHODS {
   DELETE = 'DELETE',
 }
 
-const queryStringify = (data: Record<string, any>): string =>
+const queryStringify = (data: Indexed): string =>
   '?' +
   Object.entries(data)
     .map(([key, value]) => `${key}=${value.toString()}`)
     .join('&');
 
 type Options = {
-  method: METHODS;
-  data?: Record<string, any>;
+  method?: METHODS;
+  data?: Indexed;
   headers?: Record<string, string>;
   timeout?: number;
 };
 type RequestFn = (url: string, options?: Options) => Promise<XMLHttpRequest>;
 
 export class HTTPTransport {
+  url: string;
+  constructor(url: string) {
+    this.url = url;
+  }
+
   get: RequestFn = (url, options) => {
     let query;
     if (options?.data) {
-      query = `${url}${queryStringify(options.data)}`;
+      query = `${this.url}${url}${queryStringify(options.data)}`;
     } else {
-      query = url;
+      query = `${this.url}${url}`;
     }
     return this.request(query, { ...options, method: METHODS.GET });
   };
   post: RequestFn = (url, options) => {
-    console.log(url);
-    return this.request(url, { ...options, method: METHODS.POST });
+    return this.request(`${this.url}${url}`, {
+      ...options,
+      method: METHODS.POST,
+    });
   };
   put: RequestFn = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.PUT });
+    return this.request(`${this.url}${url}`, {
+      ...options,
+      method: METHODS.PUT,
+    });
   };
   delete: RequestFn = (url, options) => {
-    return this.request(url, { ...options, method: METHODS.DELETE });
+    return this.request(`${this.url}${url}`, {
+      ...options,
+      method: METHODS.DELETE,
+    });
   };
 
   request = (url: string, options: Options): Promise<XMLHttpRequest> => {
@@ -49,6 +62,8 @@ export class HTTPTransport {
       } else {
         xhr.open(method, url);
       }
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
       if (headers) {
         Object.entries(headers).map(([key, value]) =>
           xhr.setRequestHeader(key, value)
@@ -68,6 +83,8 @@ export class HTTPTransport {
 
       if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (data instanceof FormData) {
+        xhr.send(data);
       } else {
         xhr.send(JSON.stringify(data));
       }

@@ -1,1 +1,1 @@
-export { GroupMessage as default } from './groupMessage';
+export { default } from './groupMessage';

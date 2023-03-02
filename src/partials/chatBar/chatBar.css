@@ -9,19 +9,9 @@
   &__profile-link {
     height: 56px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
-    padding-right: 10px;
-  }
-
-  &__link {
-    text-decoration: none;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 1;
-    text-align: right;
-    color: var(--color-text-second);
+    padding: 0 10px;
   }
 
   &__search {
