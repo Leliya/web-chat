@@ -6,7 +6,7 @@
 !.vscode/*.code-snippets
 
 dist/*
-node_modules/*
+/node_modules/*
 .prettierrc
 .parcel-cache/*
 
