@@ -22,7 +22,7 @@ export function withStore<P extends WithStateProps>(
       return;
     };
 
-    componentDidMount(props: P) {
+    componentDidMount() {
       window.store.on('changed', this.__onChangeStoreCallback);
     }
 

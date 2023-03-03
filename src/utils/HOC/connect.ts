@@ -19,7 +19,7 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed) {
         }
       };
 
-      componentDidMount(props: P) {
+      componentDidMount() {
         window.store.on('changed', this.__onChangeStoreCallback);
       }
 

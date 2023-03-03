@@ -4,6 +4,7 @@ import { initRouter } from '../utils/Router/Router';
 import Store from '../utils/Store';
 import { initApp } from '../utils/initApp';
 import { defaultState } from '../utils/defaultState';
+import '../styles/style.css';
 
 declare global {
   interface Window {

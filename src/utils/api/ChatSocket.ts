@@ -4,7 +4,7 @@ import { isObject } from '../utility/isObject';
 
 export class ChatSocket {
   socket: WebSocket;
-  checkConnection: number | undefined;
+  checkConnection: NodeJS.Timer | undefined;
   chatId: number;
   userId: number;
   token: string;

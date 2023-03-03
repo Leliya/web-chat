@@ -76,7 +76,7 @@ export default class Block<P extends object> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected getStateFromProps(props: P): void {
+  protected getStateFromProps(_props: P): void {
     this.state = {};
   }
 
@@ -90,8 +90,8 @@ export default class Block<P extends object> {
     this.componentDidMount(props);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  componentDidMount(props: P) {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  componentDidMount(_props: P) {}
 
   _componentWillUnmount() {
     this.eventBus().destroy();
@@ -110,7 +110,7 @@ export default class Block<P extends object> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps?: P, newProps?: P): boolean {
+  componentDidUpdate(_oldProps?: P, _newProps?: P): boolean {
     return true;
   }
 
@@ -166,8 +166,8 @@ export default class Block<P extends object> {
     return this.element!;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  _makePropsProxy(props: any) {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  _makePropsProxy(_props: any) {}
 
   _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
