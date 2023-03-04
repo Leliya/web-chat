@@ -6,7 +6,8 @@
     "dev": "webpack --mode development",
     "start": "webpack-dev-server --mode development --open",
     "build": "rimraf dist && webpack --mode production",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "stylelint": "npx stylelint **/*.css"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-plugin-import": "2.26.0",
     "html-webpack-plugin": "4.5.2",
+    "husky": "^8.0.3",
     "mini-css-extract-plugin": "2.7.2",
     "postcss": "8.4.20",
     "postcss-import": "15.1.0",
@@ -57,5 +59,11 @@
     "handlebars": "4.7.7",
     "nanoid": "4.0.0",
     "postcss-nested": "6.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint&&npm run stylelint",
+      "pre-push": "npm run other command"
+    }
   }
 }
