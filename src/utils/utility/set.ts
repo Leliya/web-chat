@@ -2,8 +2,8 @@ import merge from './merge';
 
 function set(
   object: Indexed | unknown,
-  path: string,
-  value: unknown
+  path?: string,
+  value?: unknown
 ): Indexed | unknown {
   if (!(object instanceof Object)) {
     return object;

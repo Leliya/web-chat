@@ -1,12 +1,12 @@
 import { isArray } from './isArray';
 import { isObject } from './isObject';
 
-function merge(lhs: Indexed, rhs?: Indexed): Indexed | void {
-  if (!rhs) {
-    return;
-  }
+function merge(lhs?: Indexed, rhs?: Indexed): Indexed {
   if (!lhs) {
-    return rhs;
+    return rhs as Indexed;
+  }
+if (!rhs) {
+    return lhs as Indexed;
   }
 
   if (Object.keys(rhs).length === 0) {
@@ -24,11 +24,11 @@ function merge(lhs: Indexed, rhs?: Indexed): Indexed | void {
 
   Object.keys(rhs).forEach((item) => {
     if (isObject(rhs[item])) {
-      merge(lhs[item], rhs[item]);
+     Object.assign(rhs[item] , merge(lhs[item], rhs[item]))
     }
   });
   Object.assign(lhs || {}, rhs);
-  return lhs;
+  return lhs as Indexed;
 }
 
 export default merge;

@@ -1,6 +1,6 @@
 import messageController from '../../../../controllers/MessageController';
 import Block from '../../../../utils/Block';
-import { withActiveChat } from '../../../../utils/HOC/withActiveChat';
+//import { withActiveChat } from '../../../../utils/HOC/withActiveChat';
 import { withUser } from '../../../../utils/HOC/withUser';
 import Store from '../../../../utils/Store';
 import cloneDeep from '../../../../utils/utility/cloneDeep';
@@ -42,7 +42,7 @@ class Chat extends Block<ChatProps> {
   }
 
   chooseChat() {
-    window.store.set({ activeChat: cloneDeep(this.props.chat) }, '');
+    window.store.set({ activeChat: cloneDeep(this.props.chat) },"");
     window.store.set({ messages: [] }, '');
     messageController.getMessages(0);
     setTimeout(() => scrollDown('messageFeed'), 100);
@@ -85,4 +85,4 @@ class Chat extends Block<ChatProps> {
   }
 }
 
-export default withActiveChat(withUser(Chat));
+export default withUser(Chat);
