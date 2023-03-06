@@ -1,7 +1,7 @@
 import { isArray } from './isArray';
 import { isObject } from './isObject';
 
-function merge(lhs?: Indexed, rhs?: Indexed): Indexed {
+function merge(lhs?: Indexed, rhs?: Indexed): Indexed|[] {
   if (!lhs) {
     return rhs as Indexed;
   }
@@ -19,12 +19,12 @@ if (!rhs) {
   }
 
   if (isArray(lhs) && isArray(rhs)) {
-    return lhs.concat(rhs);
+    return lhs.concat(rhs) as [];
   }
 
   Object.keys(rhs).forEach((item) => {
     if (isObject(rhs[item])) {
-     Object.assign(rhs[item] , merge(lhs[item], rhs[item]))
+     Object.assign(rhs[item] as Indexed, merge(lhs[item] as Indexed, rhs[item] as Indexed))
     }
   });
   Object.assign(lhs || {}, rhs);

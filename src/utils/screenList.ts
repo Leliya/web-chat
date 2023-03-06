@@ -15,6 +15,7 @@ export enum Views {
   PageServerError = 'pageServerError',
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const map: Record<Views, BlockClass<any>> = {
   [Views.Register]: Register,
   [Views.Login]: Login,
@@ -24,6 +25,7 @@ const map: Record<Views, BlockClass<any>> = {
   [Views.PageServerError]: PageServerError,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getScreenComponent = (screen: Views): BlockClass<any> => {
   return map[screen];
 };

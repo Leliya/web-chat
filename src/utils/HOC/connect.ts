@@ -14,7 +14,7 @@ export function connect(mapStateToProps: (state: Indexed) => Indexed) {
         const prevPropsFromState = mapStateToProps(prevState) as P;
         const nextPropsFromState = mapStateToProps(nextState) as P;
 
-        if (!isEqual(prevPropsFromState, nextPropsFromState)) {
+        if (!isEqual(prevPropsFromState as Indexed, nextPropsFromState as Indexed)) {
           this.setProps(nextPropsFromState);
         }
       };

@@ -5,13 +5,13 @@ import set from './utility/set';
 
 export type Dispatch<State> = (
   nextStateOrAction: Partial<State> | Action<State>,
-  payload?: any
+  payload?: unknown
 ) => void;
 
 export type Action<State> = (
   dispatch: Dispatch<State>,
   state: State,
-  payload: any
+  payload: unknown
 ) => void;
 
 class Store<State extends Indexed> extends EventBus {
@@ -35,7 +35,7 @@ class Store<State extends Indexed> extends EventBus {
     this.emit('changed', prevState, this.state);
   }
 
-  dispatch(nextStateOrAction: Partial<State> | Action<State>, payload?: any) {
+  dispatch(nextStateOrAction: Partial<State> | Action<State>, payload?: unknown) {
     if (typeof nextStateOrAction === 'function') {
       nextStateOrAction(this.dispatch.bind(this), this.state, payload);
     } else {
