@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import EventBus from './EventBus';
-import { nanoid } from 'nanoid';
+
 import Handlebars from 'handlebars';
 import isEqual from './utility/isEqual';
 import merge from './utility/merge';
 import cloneDeep from './utility/cloneDeep';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const nanoid = require('nanoid')
+
 
 type Events = Values<typeof Block.EVENTS>;
 

@@ -19,7 +19,7 @@ if (!rhs) {
   }
 
   if (isArray(lhs) && isArray(rhs)) {
-    return lhs.concat(rhs) as [];
+    return rhs;
   }
 
   Object.keys(rhs).forEach((item) => {

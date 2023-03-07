@@ -6,7 +6,6 @@ import { ErrorInput } from '../../partials/components/errorInput/errorInput';
 import FormRegister from './components/formRegister/formRegister';
 import { withRouter } from '../../utils/HOC/withRouter';
 import { RouterInterface } from '../../utils/Router/RouterInterface';
-import { withStore } from '../../utils/HOC/withStore';
 import Store from '../../utils/Store';
 
 registerComponent(FormRegister);
@@ -32,7 +31,7 @@ export class Register extends Block<FormRegisterProps> {
   }
 
   componentDidUpdate(): boolean {
-    return this.props.store.getState().screen === 'register';
+    return window.store.getState().screen === 'register';
   }
 
   render() {
@@ -44,4 +43,4 @@ export class Register extends Block<FormRegisterProps> {
   }
 }
 
-export default withRouter(withStore(Register));
+export default withRouter(Register);

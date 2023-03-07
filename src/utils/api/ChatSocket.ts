@@ -79,6 +79,7 @@ export class ChatSocket {
           const newMessage = message as MessageType;
           const activeChatId = state.activeChat?.id;
           if (this.chatId === activeChatId) {
+            console.log(oldMessages, newMessage)
             window.store.set({ messages: [...oldMessages, newMessage] }, '');
           }
         }

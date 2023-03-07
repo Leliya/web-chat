@@ -9,7 +9,7 @@ describe('Проверка возможности отправлять запр�
     });
   });
 
-  it.only('POST-запрос успешно отправляется', () => {
+  it('POST-запрос успешно отправляется', () => {
     return xhr.post('/logout').then((res) => {
       expect(res.status).toEqual(200);
       expect(res.response.method).toEqual('POST');
