@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --open",
     "start": "webpack && node ./server.js",
-    "build": "rimraf dist && webpack --mode production",
+    "build": "webpack --mode production",
     "lint": "npx eslint .",
     "stylelint": "npx stylelint **/*.css",
     "test": "jest",
