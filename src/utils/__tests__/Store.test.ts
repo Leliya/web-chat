@@ -1,7 +1,10 @@
 import Store, { Dispatch } from '../Store';
 
 describe('Проверка работы Store', () => {
-  const store = new Store({ testProps: 'test' });
+  let store:Store<Indexed>
+  beforeEach(() => {
+    store = new Store({ testProps: 'test' });
+  });
 
   it('должен возвращать актуальное состояние', () => {
     const result = store.getState();
@@ -23,7 +26,7 @@ describe('Проверка работы Store', () => {
     expect(store.set).toHaveBeenCalledTimes(1);
   });
 
-  it.only('должен изменять состояние', () => {
+  it('должен изменять состояние', () => {
     store.set({ testProps: 'newTest3' }, '');
     const result = store.getState();
     expect(result).toEqual({ testProps: 'newTest3' });
