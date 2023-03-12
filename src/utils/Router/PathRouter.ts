@@ -1,7 +1,7 @@
 import { RouterInterface } from './RouterInterface';
 
 class PathRouter implements RouterInterface {
-  private routes: Record<string, () => void> = {};
+  public routes: Record<string, () => void> = {};
 
   private isStarted = false;
 
