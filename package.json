@@ -10,7 +10,7 @@
     "stylelint": "npx stylelint **/*.css",
     "test": "jest",
     "prepare": "husky install",
-    "lint-staged": "npx lint-staged"
+    "lint-staged": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -80,7 +80,7 @@
     }
   },
   "lint-staged": {
-    "*.css": "npm run stylelint",
-    "*.ts": "npm run lint"
+    "*.css": "stylelint",
+    "*.ts": "eslint"
   }
 }
