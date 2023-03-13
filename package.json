@@ -9,7 +9,8 @@
     "lint": "npx eslint .",
     "stylelint": "npx stylelint **/*.css",
     "test": "jest",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint-staged": "npx lint-staged"
   },
   "repository": {
     "type": "git",
@@ -75,7 +76,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged&&npm run test"
+      "pre-commit": "npm run lint-staged&&npm run test"
     }
   },
   "lint-staged": {
