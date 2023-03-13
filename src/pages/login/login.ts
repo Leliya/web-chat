@@ -30,7 +30,7 @@ class Login extends Block<LoginProps> {
   }
 
   componentDidUpdate(): boolean {
-    return window.store.getState().screen !== "login"
+    return window.store.getState().screen === "login"
   }
 
   render() {

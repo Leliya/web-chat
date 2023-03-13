@@ -1,7 +1,7 @@
 import ChatsController from '../../controllers/ChatsController';
 import Block from '../../utils/Block';
 import { createChatsSocket } from '../../utils/createChatsSocket';
-import { withActiveChat } from '../../utils/HOC/withActiveChat';
+//import { withActiveChat } from '../../utils/HOC/withActiveChat';
 import { withChats } from '../../utils/HOC/withChats';
 import { RouterInterface } from '../../utils/Router/RouterInterface';
 
@@ -79,4 +79,4 @@ class Chatbar extends Block<ChatbarProps> {
   }
 }
 
-export default withActiveChat(withChats(Chatbar));
+export default withChats(Chatbar);
