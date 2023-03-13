@@ -21,7 +21,7 @@ export class ChatSocket {
 
   _check() {
     if (this.socket.readyState === 3) {
-      this.restart()
+      return
     }
     this.socket.send(
       JSON.stringify({
@@ -55,6 +55,7 @@ export class ChatSocket {
         console.log('Соединение закрыто чисто');
       } else {
         console.log('Обрыв соединения');
+        this.restart()
       }
 
       console.log(`Код: ${event.code} | Причина: ${event.reason}`);

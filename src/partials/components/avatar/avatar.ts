@@ -25,7 +25,6 @@ class Avatar extends Block<AvatarProps> {
   }
 
   protected render(): string {
-    console.log(image)
     return `
     <div class="{{class}} avatar"
       {{#if avatar}}

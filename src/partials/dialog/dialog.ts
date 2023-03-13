@@ -57,12 +57,20 @@ class Dialog extends Block<DialogProps> {
         });
       },
       deleteChat: () => {
-        ChatsController.deleteChat(this.props.activeChat.id)
+        const chatId = this.props.activeChat.id;
+        ChatsController.deleteChat(chatId)
           .then(() => {
             const newChatsList = window.store
               .getState()
-              .chats.filter((chat) => chat.id !== this.props.activeChat.id);
+              .chats.filter((chat) => chat.id !== chatId);
             window.store.set({ chats: newChatsList }, '');
+
+            const socketForClose = window.store.getState().sockets[chatId];
+            socketForClose?.close(1000, 'Пользователь удалил чат');
+
+            const sockets = window.store.getState().sockets;
+            delete sockets[chatId];
+            window.store.set({ sockets: sockets }, '');
           })
           .catch((err) => console.log(err));
 
