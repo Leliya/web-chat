@@ -80,7 +80,7 @@
     }
   },
   "lint-staged": {
-    "*.css": "stylelint",
-    "*.ts": "eslint"
+    "src/**/*.css": "stylelint",
+    "src/**/*.ts": "eslint"
   }
 }
