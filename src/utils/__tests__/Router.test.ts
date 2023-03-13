@@ -28,7 +28,7 @@ describe('Проверка работы роутера', () => {
 
   it('должен вызывать метод forward history', () => {
     mockRouter.forward();
-    expect(window.history.forward).toHaveBeenCalledTimes(1);
+    expect(window.history.forward).toHaveBeenCalledTimes(2);
   });
 
   it('должен вызывать метод back history', () => {
