@@ -8,6 +8,10 @@ class ChatsController {
     return chatsAPI.createChat(title).then(checkResponse<Indexed>);
   }
 
+  public deleteChat(id: number): Promise<Indexed> {
+    return chatsAPI.deleteChat(id).then(checkResponse<Indexed>);
+  }
+
   public getChats(): Promise<ChatType[]> {
     return chatsAPI.getChats().then(checkResponse<ChatType[]>);
   }

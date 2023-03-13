@@ -22,7 +22,8 @@ interface DialogProps {
   deleteUserFromChat: (data: { login: string }) => void;
   onOpenModalAddUser: () => void;
   onOpenModalDeleteUser: () => void;
-  clearChat: () => void;
+  onOpenModalDeleteChat: () => void;
+  deleteChat: () => void;
   messages: MessageType[];
   activeChat: ChatType;
 }
@@ -37,6 +38,7 @@ class Dialog extends Block<DialogProps> {
       onToggleMenuInsert: () => this.onToggleElement('menuInsert'),
       onOpenModalAddUser: () => this.onToggleElement('modalAddUser'),
       onOpenModalDeleteUser: () => this.onToggleElement('modalDeleteUser'),
+      onOpenModalDeleteChat: () => this.onToggleElement('modalDeleteChat'),
       addUserInChat: (data) => {
         this.searchUserByLogin(data)
           .then((userId) => {
@@ -54,7 +56,16 @@ class Dialog extends Block<DialogProps> {
             .catch((err) => console.log(err));
         });
       },
-      clearChat: () => {
+      deleteChat: () => {
+        ChatsController.deleteChat(this.props.activeChat.id)
+          .then(() => {
+            const newChatsList = window.store
+              .getState()
+              .chats.filter((chat) => chat.id !== this.props.activeChat.id);
+            window.store.set({ chats: newChatsList }, '');
+          })
+          .catch((err) => console.log(err));
+
         console.log('3ok');
       },
       onClick: (e: Event) => {
@@ -112,7 +123,7 @@ class Dialog extends Block<DialogProps> {
         {{{Avatar class="dialog__avatar"}}}
         <h2 class="dialog__username">{{ activeChat.title }}</h2>
         {{{Button class="dialog-header" type="button" label="Открыть меню" onClick=onToggleMenuControl}}}
-        {{{MenuChats ref="menuChats" addUserInChat=onOpenModalAddUser deleteUserFromChat=onOpenModalDeleteUser clearChat=clearChat}}}
+        {{{MenuChats ref="menuChats" addUserInChat=onOpenModalAddUser deleteUserFromChat=onOpenModalDeleteUser deleteChat=onOpenModalDeleteChat}}}
       </header>
       <div class="dialog__feed" id="messageFeed">
       {{#each messages}}
@@ -151,6 +162,14 @@ class Dialog extends Block<DialogProps> {
         inputName="login"
         onClick=onOpenModalDeleteUser
         handleSubmit=deleteUserFromChat
+      }}}
+      {{{ModalChats
+        formName="deleteChat"
+        title="Вы уверены?"
+        buttonName="Удалить чат"
+        ref="modalDeleteChat"
+        onClick=onOpenModalDeleteChat
+        handleSubmit=deleteChat
       }}}
     </div >
     {{else}}
