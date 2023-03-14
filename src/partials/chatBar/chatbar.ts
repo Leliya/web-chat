@@ -1,6 +1,7 @@
 import ChatsController from '../../controllers/ChatsController';
 import Block from '../../utils/Block';
 import { createChatsSocket } from '../../utils/createChatsSocket';
+//import { withActiveChat } from '../../utils/HOC/withActiveChat';
 import { withChats } from '../../utils/HOC/withChats';
 import { RouterInterface } from '../../utils/Router/RouterInterface';
 
@@ -10,6 +11,7 @@ interface ChatbarProps {
   onOpenModalCreateChats: () => void;
   createChat: (data: Record<string, string>) => void;
   chats: ChatType[];
+  activeChat: ChatType;
 }
 
 class Chatbar extends Block<ChatbarProps> {
@@ -59,7 +61,7 @@ class Chatbar extends Block<ChatbarProps> {
         </form>
         <ul class="chatBar__chatList">
           {{#each chats}}
-              {{{Chat chat=this onClick=@root.onChooseChat}}}
+              {{{Chat chat=this onClick=@root.onChooseChat activeChat=@root.activeChat}}}
           {{/each}}
         </ul>
         {{{ModalChats

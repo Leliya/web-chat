@@ -25,6 +25,7 @@ export default function registerComponent<Props extends object>(
 
       const { children, refs } = data.root;
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (Object.keys(hash) as any).forEach((key: keyof Props) => {
         if (this[key] && typeof this[key] === 'string') {
           hash[key] = hash[key].replace(

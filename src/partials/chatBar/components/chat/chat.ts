@@ -1,6 +1,7 @@
 import messageController from '../../../../controllers/MessageController';
+import { RESOURCE_URL } from '../../../../data/const';
 import Block from '../../../../utils/Block';
-import { withActiveChat } from '../../../../utils/HOC/withActiveChat';
+//import { withActiveChat } from '../../../../utils/HOC/withActiveChat';
 import { withUser } from '../../../../utils/HOC/withUser';
 import Store from '../../../../utils/Store';
 import cloneDeep from '../../../../utils/utility/cloneDeep';
@@ -42,7 +43,7 @@ class Chat extends Block<ChatProps> {
   }
 
   chooseChat() {
-    window.store.set({ activeChat: cloneDeep(this.props.chat) }, '');
+    window.store.set({ activeChat: cloneDeep(this.props.chat) },"");
     window.store.set({ messages: [] }, '');
     messageController.getMessages(0);
     setTimeout(() => scrollDown('messageFeed'), 100);
@@ -58,6 +59,13 @@ class Chat extends Block<ChatProps> {
     }
   }
 
+  getAvatar() {
+    if (this.props.chat?.avatar) {
+      return RESOURCE_URL + this.props.chat.avatar;
+    }
+    return "";
+  }
+
   protected render(): string {
     return `
     <li class="chat">
@@ -66,7 +74,7 @@ class Chat extends Block<ChatProps> {
     {{else}}
       <div class="chat__content">
     {{/if}}
-        {{{Avatar class="chat__avatar"}}}
+        {{{Avatar class="chat__avatar" avatar="${this.getAvatar()}"}}}
         <h3 class="chat__title">{{chat.title}}</h3>
         <p class="chat__text">
         <span>${this.getAuthorMessage()}</span>
@@ -85,4 +93,4 @@ class Chat extends Block<ChatProps> {
   }
 }
 
-export default withActiveChat(withUser(Chat));
+export default withUser(Chat);

@@ -16,11 +16,14 @@ export function createChatsSocket(chats: ChatType[]): SocketObject {
 export async function createChatSocket(chatId: number): Promise<WebSocket> {
   const promiseSocket = ChatsController.getToken(chatId)
     .then((res) => {
-      return res.token;
+      return res.token as string;
     })
     .then((token) => {
-      const userId = window.store.getState().user!.id;
-      return new ChatSocket(userId, chatId, token).socket;
+      const user = window.store.getState().user
+      if(user){
+        return new ChatSocket(user.id, chatId, token).socket;
+      }
+      return
     })
     .catch((err) => console.log(err));
   const socket = await promiseSocket;

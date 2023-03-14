@@ -19,6 +19,7 @@ export function initRouter(router: RouterInterface, store: Store<AppState>) {
       }
 
       if (isAuthorized && !route.shouldAuthorized) {
+        router.go('/messenger');
         store.dispatch({ screen: Views.Chats });
       }
 

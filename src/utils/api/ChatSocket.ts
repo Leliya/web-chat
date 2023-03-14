@@ -4,7 +4,7 @@ import { isObject } from '../utility/isObject';
 
 export class ChatSocket {
   socket: WebSocket;
-  checkConnection: number | undefined;
+  checkConnection: NodeJS.Timer | undefined;
   chatId: number;
   userId: number;
   token: string;
@@ -21,7 +21,7 @@ export class ChatSocket {
 
   _check() {
     if (this.socket.readyState === 3) {
-      this.restart()
+      return
     }
     this.socket.send(
       JSON.stringify({
@@ -55,6 +55,7 @@ export class ChatSocket {
         console.log('Соединение закрыто чисто');
       } else {
         console.log('Обрыв соединения');
+        this.restart()
       }
 
       console.log(`Код: ${event.code} | Причина: ${event.reason}`);
@@ -79,6 +80,7 @@ export class ChatSocket {
           const newMessage = message as MessageType;
           const activeChatId = state.activeChat?.id;
           if (this.chatId === activeChatId) {
+            console.log(oldMessages, newMessage)
             window.store.set({ messages: [...oldMessages, newMessage] }, '');
           }
         }

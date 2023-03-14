@@ -76,7 +76,9 @@ export class Form extends Block<FormProps> {
       },
     });
   }
-  submitForm(data?: Indexed) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  submitForm(data?: Indexed):void {
+    console.log(data)
     return;
   }
 }

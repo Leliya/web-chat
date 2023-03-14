@@ -1,15 +1,9 @@
-type PlainObject<T = unknown> = {
-  [k in string]: T;
-};
+import { isArray } from "./isArray";
+import { isObject, PlainObject } from "./isObject";
 
-function isObject(value: unknown): value is PlainObject {
-  return typeof value === 'object' && value instanceof Object && value !== null;
-}
-function isArray(arr: unknown): arr is [] {
-  return Array.isArray(arr);
-}
-function isEqual(a: Indexed, b: Indexed): boolean {
-  if (!(isObject(a) && isObject(b))) {
+
+function isEqual(a: Indexed|Indexed[], b: Indexed|Indexed[]): boolean {
+  if (!(isObject (a) && isObject(b))) {
     return false;
   }
 

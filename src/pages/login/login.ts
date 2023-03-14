@@ -5,7 +5,6 @@ import { Field } from '../../partials/components/field/field';
 import { ErrorInput } from '../../partials/components/errorInput/errorInput';
 import FormLogin from './components/formLogin/formLogin';
 import { withRouter } from '../../utils/HOC/withRouter';
-import { withStore } from '../../utils/HOC/withStore';
 import Store  from '../../utils/Store';
 import { RouterInterface } from '../../utils/Router/RouterInterface';
 
@@ -31,7 +30,7 @@ class Login extends Block<LoginProps> {
   }
 
   componentDidUpdate(): boolean {
-    return this.props.store.getState().screen !== "login"
+    return window.store.getState().screen === "login"
   }
 
   render() {
@@ -44,4 +43,4 @@ class Login extends Block<LoginProps> {
   }
 }
 
-export default withRouter(withStore(Login));
+export default withRouter(Login);

@@ -5,8 +5,8 @@
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
-dist/*
-node_modules/*
+dist/
+/node_modules/*
 .prettierrc
 .parcel-cache/*
 

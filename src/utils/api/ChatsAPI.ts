@@ -23,9 +23,11 @@ export class ChatsAPI {
     });
   }
 
-  deleteChat(id: Record<string, number>) {
+  deleteChat(id:number) {
     return chatsAPIInstance.delete('', {
-      data: id,
+      data: {
+        chatId: id,
+      },
       headers: { 'Content-Type': 'application/json' },
     });
   }

@@ -2,15 +2,15 @@ import merge from './merge';
 
 function set(
   object: Indexed | unknown,
-  path: string,
-  value: unknown
+  path?: string,
+  value?: unknown
 ): Indexed | unknown {
   if (!(object instanceof Object)) {
     return object;
   }
 
   if (!path && value instanceof Object) {
-    return merge(object as Indexed, value);
+    return merge(object as Indexed, value as Indexed);
   }
 
   if (typeof path !== 'string') {
@@ -19,7 +19,7 @@ function set(
 
   const newKey: Indexed = path
     .split('.')
-    .reduceRight((acc: Indexed, current: string): any => {
+    .reduceRight((acc: Indexed, current: string): Indexed => {
       const newObj: Indexed = {};
       if (Object.keys(acc).length === 0) {
         acc[current] = value;

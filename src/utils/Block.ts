@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import EventBus from './EventBus';
-import { nanoid } from 'nanoid';
+
 import Handlebars from 'handlebars';
 import isEqual from './utility/isEqual';
 import merge from './utility/merge';
 import cloneDeep from './utility/cloneDeep';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const nanoid = require('nanoid');
 
 type Events = Values<typeof Block.EVENTS>;
 
@@ -34,7 +37,7 @@ export default class Block<P extends object> {
   /**
    * @deprecated
    */
-  protected state: Record<string, any> = {};
+  protected state: Indexed = {};
   refs: { [key: string]: Block<P> } = {};
 
   public constructor(props: P) {
@@ -76,7 +79,7 @@ export default class Block<P extends object> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected getStateFromProps(props: P): void {
+  protected getStateFromProps(_props: P): void {
     this.state = {};
   }
 
@@ -90,8 +93,8 @@ export default class Block<P extends object> {
     this.componentDidMount(props);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  componentDidMount(props: P) {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
+  componentDidMount(_props: P) {}
 
   _componentWillUnmount() {
     this.eventBus().destroy();
@@ -110,7 +113,7 @@ export default class Block<P extends object> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps?: P, newProps?: P): boolean {
+  componentDidUpdate(_oldProps?: P, _newProps?: P): boolean {
     return true;
   }
 
@@ -124,7 +127,7 @@ export default class Block<P extends object> {
     this.eventBus().emit(Block.EVENTS.FLOW_CDU, prevProps, nextProps);
   };
 
-  setState = (nextState: any) => {
+  setState = (nextState: Indexed) => {
     if (!nextState || isEqual(this.state, nextState)) {
       return;
     }
@@ -166,15 +169,12 @@ export default class Block<P extends object> {
     return this.element!;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  _makePropsProxy(props: any) {}
-
   _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const events: Record<string, () => void> = (this.props as Indexed).events;
 
     if (!events || !this._element) {
       return;
@@ -186,7 +186,7 @@ export default class Block<P extends object> {
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = (this.props as any).events;
+    const events: Record<string, () => void> = (this.props as Indexed).events;
 
     if (!events) {
       return;
@@ -197,7 +197,7 @@ export default class Block<P extends object> {
     });
   }
 
-  compile(templateString: string, context: any): DocumentFragment {
+  compile(templateString: string, context: Indexed): DocumentFragment {
     const fragment = this._createDocumentElement(
       'template'
     ) as HTMLTemplateElement;

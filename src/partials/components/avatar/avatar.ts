@@ -1,5 +1,5 @@
 import Block from '../../../utils/Block';
-import * as image from '../../../../static/profile-avatar-plug.svg';
+import image from '../../../../static/profile-avatar-plug.svg';
 
 interface AvatarProps {
   class: string;
@@ -28,7 +28,7 @@ class Avatar extends Block<AvatarProps> {
     return `
     <div class="{{class}} avatar"
       {{#if avatar}}
-        style="background-image: url({{avatar}})"
+        style="background-image: url({{avatar}});background-size: cover;"
       {{else}}
         style="background-image: url(${Avatar.image});background-size: 50%;"
       {{/if}}
